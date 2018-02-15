@@ -1,0 +1,3 @@
+[submodule "doc/tutthesis"]
+	path = doc/tutthesis
+	url = https://github.com/tkalliom/tutthesis
