@@ -62,7 +62,7 @@
 \usepackage{amsopn} % For operator names; not necessary if amsmath is used
 %\usepackage[fleqn]{amsmath} %Extensions to math handling; if you use this, you should use e.g. gather instead of equation due to a hyperref bug
 
-%\usepackage{listings} %Typesetting code
+\usepackage{listings} %Typesetting code
 %\lstset{basicstyle=\footnotesize\ttfamily, numbers=left}
 %\renewcommand{\lstlistingname}{Ohjelma} % Program if you're writing in English
 % If you want non-ASCII characters (e.g. in comments), check out the listingsutf8 package
@@ -194,12 +194,32 @@ Tähän kappaleeseen on kuvattu harjoituksien työvaiheita ja muistiinpanoja.
 
 \section{Harjoitus 1}
 
-Harjoituksen tarkoituksena oli tutustua johonkin mobiililaitteeseen. Päätin valita tähän oman puhelimini, koska se oli minulle entuudestaan tuttu ja tulen luultavasti tekemään kurssin harjoitustyön sille.
+Harjoituksen tavoitteena oli tutustua johonkin mobiililaitteeseen. Päätin valita tähän oman puhelimini, koska se oli minulle entuudestaan tuttu ja tulen luultavasti tekemään kurssin harjoitustyön sille.
 
 Varsinaisen harjoitus löytyy tämän oppimispäiväkirjan liitteenä. (kts. liite \ref{ch:harjoitus1})
 
 Harjoituksessa keräsin tietoa muutamiste eri lähteistä. Varsinaisten vastauksien kirjoittaminen oli luontevaa ja onnistuin mielestäni hyvin. Suurin työ oli saada toimimaan TTY:n LaTeX opinnäytetyöpohjan järkevästi tähän oppimispäiväkirjaan. Tämän tehtävän suorittamiseen pohjan asettamisen lisäksi kului suunilleen yksi ilta.
 
+\section{Harjoitus 2}
+
+Toisessa harjoituksessa oli tarkoituksena tutustua versiohallintaan käyttäen Git-työkalua. Versiohallinta ja Git oli minulle jo entuudestaan tuttuja, joten työn eri vaiheet sujuivat mutkitta.
+
+Ensimmäisessä vaiheessa piti luoda tunnukset Github-palveluun. Minulta löytyi jo entuudestaan tunnukset kyseiseen palveluun. Lisäksi olin jo hakenut opiskelija-statusta Githubiin, jolla saa ilmaiseksi yksityiset repositoriot käyttöön.
+
+Seuraavassa vaiheessa loin repositoryn projektille. Tämä onnistui kätevästi Githubin wizardilla. Tein repositorysta yksityisen, jotta muut kurssin opiskelijat eivät voi kopioida tuotoksiani. Sitten loin paikallisesti uuteen hakemistoon Git-projektin. Projektin alustus tapahtui seuraavilla komennoilla.
+
+\begin{lstlisting}
+mkdir mobohj
+cd mobohj
+git init
+touch README.md
+git add README.md
+git commit -m"Init repo"
+git remote add origin https://github.com/isaul32/mobohj.git
+git push -u origin master
+\end{lstlisting}
+
+Lisäsin vielä lopuksi kurssihenkilökunnan Github-tunnukset repositoryoon.
 
 % It may be useful to break the chapters into their own files and then do eg. \include{01-introduction} or \include{C-resultsdiscussion}
 
