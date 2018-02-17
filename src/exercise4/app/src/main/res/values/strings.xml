@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Exercise 4</string>
+    <string name="calculate">Calculate</string>
+    <string name="nan_error">Not a Number</string>
+</resources>

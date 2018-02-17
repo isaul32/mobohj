@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="li.sau.mobohj.exercise4.MainActivity">
+
+    <TextView
+        android:id="@+id/plusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:gravity="center_horizontal"
+        android:text="+"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addNum1"
+        app:layout_constraintLeft_toRightOf="@+id/addNum1" />
+
+    <Button
+        android:id="@+id/sumCalculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:onClick="calculateAdd"
+        android:text="@string/calculate"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addNum2"
+        app:layout_constraintLeft_toRightOf="@+id/addNum2"
+        tools:text="@string/calculate" />
+
+    <TextView
+        android:id="@+id/addResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="0"
+        app:layout_constraintBaseline_toBaselineOf="@+id/sumCalculate"
+        app:layout_constraintLeft_toRightOf="@+id/sumCalculate"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/addNum2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="4"
+        android:inputType="number"
+        app:layout_constraintLeft_toRightOf="@+id/plusText"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/plusText" />
+
+    <EditText
+        android:id="@+id/addNum1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:ems="4"
+        android:inputType="number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
