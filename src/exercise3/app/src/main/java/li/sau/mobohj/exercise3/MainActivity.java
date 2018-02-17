@@ -1,4 +1,4 @@
-package li.sau.mobohj.exercise1;
+package li.sau.mobohj.exercise3;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "li.sau.mobohj.exercise1"
+        applicationId "li.sau.mobohj.exercise3"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

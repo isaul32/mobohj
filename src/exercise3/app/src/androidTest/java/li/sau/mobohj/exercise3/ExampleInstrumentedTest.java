@@ -1,4 +1,4 @@
-package li.sau.mobohj.exercise1;
+package li.sau.mobohj.exercise3;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("li.sau.mobohj.exercise1", appContext.getPackageName());
+        assertEquals("li.sau.mobohj.exercise3", appContext.getPackageName());
     }
 }
