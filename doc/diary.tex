@@ -8,7 +8,8 @@
 \fi
 
 
-\documentclass[globalnumbering,centeredcaptions,draftfooter]{tutthesis/tutthesis} % see appendix for list of options
+%\documentclass[globalnumbering,centeredcaptions,draftfooter]{tutthesis/tutthesis} % see appendix for list of options
+\documentclass[globalnumbering,centeredcaptions]{tutthesis/tutthesis} % see appendix for list of options
 \graphicspath{ {tutthesis/} } % add graphics folders in here
 
 %\pagestyle{headings} % Adds titles to the header
@@ -106,7 +107,7 @@
 
 
 %First, the abstract in the language of the thesis (no language selection). Note that most fields are already defined
-
+\iffalse
 \thesisdescription{Oppimispäiväkirja}
 \begin{abstract}
 Tiivistelmä on suppea, 1 sivun mittainen itsenäinen esitys työstä: mikä oli ongelma, mitä tehtiin ja mitä saatiin tulokseksi.
@@ -115,7 +116,7 @@ Kuvia, kaavioita ja taulukoita ei käytetä tiivistelmässä.
 Laita työn pääkielellä kirjoitettu tiivistelmä ensin ja käännös sen jälkeen.
 Suomenkieliselle kandidaatintyölle pitää olla myös englanninkielinen nimi arkistointia varten.
 \end{abstract}
-
+\fi
 %Then, the abstract in the other language (explicit language selection) except for bachelor's theses
 \iffalse
 \begin{otherlanguage}{english}
@@ -137,7 +138,7 @@ A bachelor's thesis in Finnish must also have a name in English for archival.
 \end{otherlanguage}
 \fi
 
-
+\iffalse
 \chapter*{Alkusanat}
 
 Tämä dokumenttipohja on laadittu TTY:n opinnäytetyöohjeen vuoden 2017 version mukaan pohjautuen LaTeXin \emph{report}-dokumenttiluokkaan sekä TTY:n aiempiin pohjiin.
@@ -155,16 +156,16 @@ Tampereella, 31.5.2017
 \vspace{2\baselineskip}
 
 John Doe
-
+\fi
 
 
 \tableofcontents
 
-\listoffigures
+%\listoffigures
 %\listoftables
 
 
-
+\iffalse
 \chapter*{Lyhenteet ja merkinnät}
 
 % This is not a "proper" table, so no table environment
@@ -185,7 +186,7 @@ $m$ & massa
 \end{tabular}
 
 Työssä käytetyt lyhenteet ja merkinnät määritellään ja selitetään kootusti aakkosjärjestyksessä työn alussa ja kun ne esiintyvät tekstissä ensimmäisen kerran. Lyhenteiden kanssa käytetään tällöin sulkeita.
-
+\fi
 
 \chapter{Harjoitukset}
 \label{ch:harjoitukset}
@@ -266,6 +267,7 @@ Applikaatio vaatii monille ominaisuuksille kirjautumisen ja siihen käytetään 
 
 % It may be useful to break the chapters into their own files and then do eg. \include{01-introduction} or \include{C-resultsdiscussion}
 
+\iffalse
 \chapter{Johdanto}
 \label{ch:johdanto}
 
@@ -617,7 +619,7 @@ Tiivis yhteenvetotaulukko auttaa kertaamaan tärkeimmät kohdat.
   \bibliographystyle{bababbrtut}
 \fi
 \bibliography{references}
-
+\fi
 
 
 
@@ -650,6 +652,8 @@ Lähteet:
 \url{https://developer.android.com/studio/index.html}
 
 \url{https://en.wikipedia.org/wiki/Android_(operating_system)}
+
+\iffalse
 
 \chapter{Tutthesis-asiakirjaluokan käyttö}
 \label{ch:classdocumentation}
@@ -749,5 +753,6 @@ Moodi & Oletus & \emph{Upright}  & \emph{Italic}    & \emph{Bold}       & \emph{
 
 Paketti \emph{unicode-math} sallii myös lihavoidun ja/tai kursivoidun pääteviivattoman matemaattisen tekstin.
 
+\fi
 
 \end{document}
