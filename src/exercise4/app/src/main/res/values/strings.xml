@@ -2,4 +2,7 @@
     <string name="app_name">Exercise 4</string>
     <string name="calculate">Calculate</string>
     <string name="nan_error">Not a Number</string>
+    <string name="clear_all">Clear all</string>
+    <string name="show_log">Show log</string>
+    <string name="hide_log">Hide log</string>
 </resources>

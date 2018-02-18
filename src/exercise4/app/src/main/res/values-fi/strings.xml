@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Exercise 4</string>
+    <string name="app_name">Harjoitus 4</string>
     <string name="calculate">Laske</string>
     <string name="nan_error">Ei numero</string>
+    <string name="clear_all">Tyhjennä kaikki</string>
+    <string name="show_log">Näytä logi</string>
+    <string name="hide_log">Piilota logi</string>
 </resources>
