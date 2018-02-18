@@ -7,8 +7,61 @@
     tools:context="li.sau.mobohj.exercise4.MainActivity">
 
     <TextView
-        android:id="@+id/plusText"
+        android:id="@+id/subText"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:gravity="center_horizontal"
+        android:text="-"
+        app:layout_constraintBaseline_toBaselineOf="@+id/subNum1"
+        app:layout_constraintLeft_toRightOf="@+id/subNum1" />
+
+    <Button
+        android:id="@+id/subCalculate"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:onClick="calculateSubtract"
+        android:text="@string/calculate"
+        app:layout_constraintBaseline_toBaselineOf="@+id/subNum2"
+        app:layout_constraintLeft_toRightOf="@+id/subNum2"
+        tools:text="@string/calculate" />
+
+    <TextView
+        android:id="@+id/subResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="0"
+        app:layout_constraintBaseline_toBaselineOf="@+id/subNum2"
+        app:layout_constraintLeft_toRightOf="@+id/subCalculate"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/subNum2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:ems="4"
+        android:inputType="number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/subText"
+        app:layout_constraintLeft_toRightOf="@+id/subText" />
+
+    <EditText
+        android:id="@+id/subNum1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:ems="4"
+        android:inputType="number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNum1" />
+
+    <TextView
+        android:id="@+id/addText"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:gravity="center_horizontal"
@@ -20,7 +73,7 @@
         android:id="@+id/sumCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
+        android:layout_marginLeft="16dp"
         android:onClick="calculateAdd"
         android:text="@string/calculate"
         app:layout_constraintBaseline_toBaselineOf="@+id/addNum2"
@@ -44,9 +97,9 @@
         android:layout_height="wrap_content"
         android:ems="4"
         android:inputType="number"
-        app:layout_constraintLeft_toRightOf="@+id/plusText"
+        app:layout_constraintLeft_toRightOf="@+id/addText"
         android:layout_marginLeft="16dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/plusText" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/addText" />
 
     <EditText
         android:id="@+id/addNum1"

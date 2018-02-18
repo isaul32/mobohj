@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         // Get UI components
         addNum1 = (EditText) findViewById(R.id.addNum1);
         addNum2 = (EditText) findViewById(R.id.addNum2);
-        addResult = (TextView) findViewById(R.id.sumResult);
+        addResult = (TextView) findViewById(R.id.addResult);
 
-        //subNum1 = (EditText) findViewById(R.id.subNum1);
-        //subNum2 = (EditText) findViewById(R.id.subNum2);
-        //subResult = (TextView) findViewById(R.id.subResult);
+        subNum1 = (EditText) findViewById(R.id.subNum1);
+        subNum2 = (EditText) findViewById(R.id.subNum2);
+        subResult = (TextView) findViewById(R.id.subResult);
     }
 
     public void calculateAdd(View view) {

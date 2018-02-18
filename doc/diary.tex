@@ -194,7 +194,7 @@ Tähän kappaleeseen on kuvattu harjoituksien työvaiheita ja muistiinpanoja.
 
 \section{Harjoitus 1}
 
-Harjoituksen tavoitteena oli tutustua johonkin mobiililaitteeseen. Päätin valita tähän oman puhelimini, koska se oli minulle entuudestaan tuttu ja tulen luultavasti tekemään kurssin harjoitustyön sille.
+Harjoituksen tavoitteena oli tutustua johonkin mobiililaitteeseen. Päätin valita tähän oman puhelimeni, koska se oli minulle entuudestaan tuttu ja tulen luultavasti tekemään ja testaamaan kurssin harjoitustyön sille.
 
 Varsinaisen harjoitus löytyy tämän oppimispäiväkirjan liitteenä. (kts. liite \ref{ch:harjoitus1})
 
@@ -231,11 +231,38 @@ Seuraavaksi loin uuden Android emulaattorin. Käytin Nexus 5X API 26-laitteen as
 
 Harjoitusprojektin lähdekoodi löytyy repositorystä src/exercise3 hakemiston alta.
 
-\section{Harjoitus4}
+\section{Harjoitus 4}
 
 Tämän harjoituksen tarkoitus oli rakenaa yksinkertainen laskukone. Applikaation rakentaminen lähti samalla tavalla liikkeelle kuin aikaisemmassa tehtävässä eli projektin luonnilla.
 
 Hyödynsin annettua ohjetta käyttöliittymän suunnitteluun. Tein Activity näkymään onClick metodit ja injektoin Activityn luonnissa käyttöliittymäkomponentit. Lokalisoin Käyttämäni tekstit.
+
+Testasin laskukonetta ensiksi pelkällä summaimella. Tämän jälkeen kopioin summaimen koodit ja käyttöliittymän komponentit muita operaatioita varten. Lopuksi testasin vielä applikaatiota puhelimessa.
+
+Pari asiaa olisin voinut tehdä harjoitukseen paremmin. Applikaationi ei esim. sallinut negatiivisia lukuja ja desimaalilukuja. Lisäksi näyttämäni virheilmoitus oli sama kaikille poikkeustilanteille. Olisin myös voinut hiota käyttöliittymän komponenttien asettelua hieman enemmän.
+
+Opin harjoituksessa käyttämään ConstraintLayout asemointia. Se osottautui yllättävän käteväksi ja nopeaksi tavaksi luoda käyttöliittymä. Jonkin verran jouduin käyttämään kuitenkin XML-editoria, jottai sain komponentit haluaamani tavalla.
+
+\chapter{Harjoitustyö}
+\label{ch:harjoitustyo}
+
+Yksi kurssin keskeisemmistä osista on harjoitustyö eli toimivan laajan applikaation kehittäminen. Tässä kappaleessä käydään lävitse harjoitustyön tekoprosessin eri vaiheita.
+
+\section{Aihe}
+
+Harjoitustyön sovelluksen ideaksi päätin valita sellaisen aiheen, josta voisi olla oikeasti hyötyä jollekkin. Sovelluksen ideana on koota tietoa eri lähteistä yhteen paikkaan yrityksen sisäisene käyttöön.
+
+Applikaatiosta löytyy seuraavia ominaisuuksia: uutiset, notifikaatiot, podcastit, blogi, tapahtuman järjestämiseen liittyviä työkaluja ja keskustelualusta.
+
+Uutiset haetaan eri lähteistä ja kootaan käyttöliittymään feedi-tyyppisesti aikajärjestykseen. Näihin käyttäjät voivat kommentoida ja tykätä. Uutisia haetaan yrityksen sosiaalisista medioista ja lisäksi käyttäjät voivat lisätä omia uutisia.
+
+Käyttäjä saa puhelimeensa notifikaatioita kun uusia uutisia ja tapahtumia on saatavilla. Käyttäjällä on kuitenkin laajat mahdollisuudet rajoittaa notifikaatioita ja määrittää minkä tyyppisiä notifikaatioita hän haluaa ja mihin kellon aikoihin.
+
+Sovelluksesta löytyy myös yrityksen sisäiseen käyttöön tuottamat podcast ja live-lähetykset. Lähetyksiä ja podcasteja pystyy kommentoimaan ja tykkäämään.
+
+Sovellus auttaa järjestämään erilaisia tapahtumia. Sovelluksessa löytyy mm. tapahtumien tietoja, ilmoittautumisjärjestelmä ja tapahtumfeedi.
+
+Applikaatio vaatii monille ominaisuuksille kirjautumisen ja siihen käytetään yrityksen omia intra-tunnuksia. Joitakin omimaisuuksia on mahdollista käyttää ilman kuten julkiset uutiset ja blogikirjoitukset.
 
 % It may be useful to break the chapters into their own files and then do eg. \include{01-introduction} or \include{C-resultsdiscussion}
 
