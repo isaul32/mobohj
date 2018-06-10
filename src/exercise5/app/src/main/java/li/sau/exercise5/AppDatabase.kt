@@ -3,9 +3,11 @@ package li.sau.exercise5
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
+import android.arch.persistence.room.TypeConverters
 import android.content.Context
 
-@Database(entities = [Book::class], version = 1, exportSchema = true)
+@Database(entities = [Book::class], version = 2)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
 
@@ -17,6 +19,7 @@ abstract class AppDatabase : RoomDatabase() {
                 synchronized(AppDatabase::class) {
                     instance = Room.databaseBuilder(context.applicationContext,
                             AppDatabase::class.java, "book_database")
+                            .fallbackToDestructiveMigration()
                             .build()
                 }
             }

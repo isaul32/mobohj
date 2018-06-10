@@ -2,20 +2,18 @@ package li.sau.exercise5
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import org.jetbrains.annotations.NotNull
 import java.util.*
 
 @Entity
 data class Book(
-        @PrimaryKey(autoGenerate = true)
-        var id: Long,
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null,
 
-        @NotNull
-        var name: String,
+    var name: String,
 
-        var isbn: String,
+    var isbn: String? = null,
 
-        var yearOfPublication: Int,
+    var yearOfPublication: Int? = null,
 
-        var dateOfAcquisition: Date
+    var dateOfAcquisition: Date? = null
 )
