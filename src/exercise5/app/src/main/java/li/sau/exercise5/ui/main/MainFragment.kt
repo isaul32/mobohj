@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import kotlinx.android.synthetic.main.main_fragment.*
 import li.sau.exercise5.Book
 import li.sau.exercise5.BookListAdapter
 import li.sau.exercise5.R
-import java.util.*
 
 class MainFragment : Fragment() {
 
@@ -45,12 +43,14 @@ class MainFragment : Fragment() {
         })
 
         activity?.fab?.setOnClickListener {
-            //Log.d("MainFragment", "Insert isn't implemented")
+            AddBookDialogFragment().show(fragmentManager, "addBookDialog")
+            /*
             val book = Book(name = "Testi")
             book.isbn = "978-1-56619-909-4"
             book.yearOfPublication = 2018
             book.dateOfAcquisition = Date()
             viewModel.insert(book)
+            */
         }
     }
 
