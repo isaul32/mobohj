@@ -1,8 +1,9 @@
 package li.sau.exercise5.ui.main
 
-import android.arch.lifecycle.LiveData
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -43,19 +44,30 @@ class MainFragment : Fragment() {
         })
 
         activity?.fab?.setOnClickListener {
-            AddBookDialogFragment().show(fragmentManager, "addBookDialog")
-            /*
-            val book = Book(name = "Testi")
-            book.isbn = "978-1-56619-909-4"
-            book.yearOfPublication = 2018
-            book.dateOfAcquisition = Date()
-            viewModel.insert(book)
-            */
+            val dialog = AddBookDialogFragment()
+            dialog.setTargetFragment(this, 1)
+            dialog.show(fragmentManager, "addBookDialog")
         }
     }
 
-}
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-private fun <T> LiveData<T>.observe(mainFragment: MainFragment, observer: Observer<T>) {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
+            if (data.extras.containsKey("name")) {
+                val book = Book(name = data.extras.getString("name"))
+                if (data.extras.containsKey("isbn")) {
+                    book.isbn = data.extras.getString("isbn")
+                }
+                if (data.extras.containsKey("year")) {
+                    //book.yearOfPublication = data.extras.getString("year")
+                }
+                if (data.extras.containsKey("date")) {
+                    //book.dateOfAcquisition = data.extras.getString("date")
+                }
+                viewModel.insert(book)
+            }
+        }
+
+    }
 }
