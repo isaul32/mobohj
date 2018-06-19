@@ -10,12 +10,15 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
-                android:text="Add book" />
+                android:textStyle="bold"
+                android:text="Add book"
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/name"
@@ -28,7 +31,8 @@
                 android:layout_marginRight="8dp"
                 android:contentDescription="Name"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:hint="Name"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/isbn"
@@ -41,7 +45,8 @@
                 android:layout_marginRight="8dp"
                 android:contentDescription="ISBN"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:hint="ISBN"
+                android:inputType="textCapCharacters" />
 
             <EditText
                 android:id="@+id/year"
@@ -54,6 +59,7 @@
                 android:layout_marginRight="8dp"
                 android:contentDescription="Year"
                 android:ems="10"
+                android:hint="Year"
                 android:inputType="numberSigned" />
 
             <EditText
@@ -67,6 +73,7 @@
                 android:layout_marginRight="8dp"
                 android:contentDescription="date"
                 android:ems="10"
+                android:hint="Date"
                 android:inputType="date" />
 
             <Button
@@ -78,7 +85,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="Add" />
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorAccent"
+                android:text="Add"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
