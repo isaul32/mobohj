@@ -20,7 +20,8 @@ import li.sau.exercise5.BookListAdapter
 import li.sau.exercise5.R
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.support.v7.widget.RecyclerView
-import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -135,9 +136,12 @@ class MainFragment : Fragment() {
                 }
                 if (data.extras.containsKey("date")) {
                     try {
-                        DateFormat
-                                .getDateInstance(DateFormat.SHORT, Locale.getDefault())
-                                .format(data.extras.getString("date"))
+                        val format = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+                        try {
+                            book.dateOfAcquisition = format.parse(data.extras.getString("date"))
+                        } catch (ex: ParseException) {
+                        }
+
                     } catch (ex: IllegalArgumentException) {
 
                     }

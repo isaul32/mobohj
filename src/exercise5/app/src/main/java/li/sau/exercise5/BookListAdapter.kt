@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import android.support.v7.util.DiffUtil
-
-
+import java.text.DateFormat
+import java.util.*
 
 
 class BookListAdapter internal constructor(context: Context) : RecyclerView.Adapter<BookListAdapter.BookViewHolder>() {
@@ -32,25 +31,24 @@ class BookListAdapter internal constructor(context: Context) : RecyclerView.Adap
             val current = books!![position]
             holder.nameView.text = current.name
             holder.isbnView.text = current.isbn
-            holder.yearView.text = current.yearOfPublication.toString()
-            // Todo: use date formatter
-            holder.dateView.text = current.dateOfAcquisition.toString()
+            if (current.yearOfPublication != null) {
+                holder.yearView.text = current.yearOfPublication.toString()
+            } else {
+                holder.yearView.text = ""
+            }
+            if (current.dateOfAcquisition != null) {
+                holder.dateView.text = DateFormat
+                        .getDateInstance(DateFormat.SHORT, Locale.getDefault())
+                        .format(current.dateOfAcquisition)
+            } else {
+                holder.dateView.text = ""
+            }
         }
     }
 
     internal fun setBooks(books: List<Book>) {
-        //this.books = books
-        if (this.books != null) {
-            val bookDiffCallback = BookDiffCallback(this.books!!, books)
-            val diffResult = DiffUtil.calculateDiff(bookDiffCallback)
-
-
-            this.books = books
-            diffResult.dispatchUpdatesTo(this)
-        } else {
-            this.books = books
-        }
-        //notifyDataSetChanged()
+        this.books = books
+        notifyDataSetChanged()
     }
 
     fun getBook(index: Int): Book? {

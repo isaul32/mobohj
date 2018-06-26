@@ -14,11 +14,11 @@ class BookRepository(app: Application) {
     init {
         val db: AppDatabase = AppDatabase.getInstance(app)!!
         bookDao = db.bookDao()
-        allBooks = bookDao.getAll()
+        allBooks = bookDao.getAllOrderByName()
     }
 
     fun getAllBooks() : LiveData<List<Book>> {
-        return bookDao.getAll()
+        return bookDao.getAllOrderByName()
     }
 
     fun insert(book: Book) {
