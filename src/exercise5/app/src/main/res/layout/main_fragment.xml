@@ -9,8 +9,10 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
+        android:layout_height="match_parent"
+        android:background="#ececec"
+        android:scrollbars="vertical"
+        android:layoutAnimation="@anim/layout_animation"
         tools:listitem="@layout/recyclerview_item" />
 
 </android.support.constraint.ConstraintLayout>

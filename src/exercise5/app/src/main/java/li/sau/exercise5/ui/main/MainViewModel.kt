@@ -21,4 +21,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     fun insert(book: Book) {
         bookRepository.insert(book)
     }
+
+    fun remove(book: Book) {
+        bookRepository.delete(book)
+    }
 }
