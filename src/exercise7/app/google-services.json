@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "498826779114",
+    "firebase_url": "https://mobiiliohjelmointi-h7.firebaseio.com",
+    "project_id": "mobiiliohjelmointi-h7",
+    "storage_bucket": "mobiiliohjelmointi-h7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498826779114:android:cd1d23414a61d416",
+        "android_client_info": {
+          "package_name": "li.sau.exercise7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498826779114-rokq58gqm8nn2c7i766vtpnhnpknbfh1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "li.sau.exercise7",
+            "certificate_hash": "0a6fb5f641fb006c888c5dc3778ebaf453e83ab5"
+          }
+        },
+        {
+          "client_id": "498826779114-srumj01hddsi5fdm0nbkdsrrm0o91g6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsc794179BajHSZNn8ewzDgJW0rFza_Ak"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498826779114-srumj01hddsi5fdm0nbkdsrrm0o91g6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
