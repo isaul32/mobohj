@@ -8,5 +8,7 @@
     <string name="add">Add</string>
     <string name="menu">Menu</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="about">About</string>
+    <string name="login_failed">Login failed</string>
 </resources>
