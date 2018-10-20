@@ -6,4 +6,7 @@
     <string name="year_of_publication">Year of publication</string>
     <string name="date_of_acquisition">Date of acquisition</string>
     <string name="add">Add</string>
+    <string name="menu">Menu</string>
+    <string name="login">Login</string>
+    <string name="about">About</string>
 </resources>

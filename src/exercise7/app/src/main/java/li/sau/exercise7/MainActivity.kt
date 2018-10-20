@@ -2,6 +2,7 @@ package li.sau.exercise7
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import li.sau.exercise7.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -16,4 +17,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
 }
