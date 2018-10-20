@@ -1,28 +1,13 @@
 package li.sau.exercise7.ui.main
 
-import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
-import android.graphics.*
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.main_activity.*
-import kotlinx.android.synthetic.main.main_fragment.*
-import li.sau.exercise7.Book
-import li.sau.exercise7.BookListAdapter
 import li.sau.exercise7.R
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.support.v7.widget.RecyclerView
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainFragment : Fragment() {
@@ -31,23 +16,26 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    //private lateinit var viewModel: MainViewModel
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-
+        mAuth = FirebaseAuth.getInstance()
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = BookListAdapter(this.context!!)
+        val currentUser = mAuth.currentUser
+
+        /*val adapter = BookListAdapter(this.context!!)
         recyclerview.adapter = adapter
-        recyclerview.layoutManager = LinearLayoutManager(this.context)
+        recyclerview.layoutManager = LinearLayoutManager(this.context)*/
 
 
-        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        /*val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             private val deleteIcon = ContextCompat.getDrawable(context!!, R.drawable.ic_delete_white_24dp)
             private val intrinsicWidth = deleteIcon!!.intrinsicWidth
             private val intrinsicHeight = deleteIcon!!.intrinsicHeight
@@ -102,13 +90,13 @@ class MainFragment : Fragment() {
             }
         }
 
-        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerview)
+        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerview)*/
 
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        /*viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.getAllBooks().observe(this, Observer<List<Book>> {
             value -> value?.let{ adapter.setBooks(it) }
-        })
+        })*/
 
         activity?.fab?.setOnClickListener {
             val dialog = AddBookDialogFragment()
@@ -118,7 +106,7 @@ class MainFragment : Fragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
@@ -150,5 +138,5 @@ class MainFragment : Fragment() {
             }
         }
 
-    }
+    }*/
 }
