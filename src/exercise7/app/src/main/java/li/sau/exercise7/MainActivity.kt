@@ -6,9 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import li.sau.exercise7.ui.main.MainFragment
 
@@ -34,12 +32,12 @@ class MainActivity : AppCompatActivity() {
         } ?: run {
             menuInflater.inflate(R.menu.login_menu, menu)
         }
-
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val providers = arrayListOf(AuthUI.IdpConfig.EmailBuilder().build())
+        val providers = arrayListOf(AuthUI.IdpConfig.EmailBuilder().build(),
+                AuthUI.IdpConfig.GoogleBuilder().build())
 
         return when (item?.itemId) {
             R.id.login -> {
@@ -71,13 +69,8 @@ class MainActivity : AppCompatActivity() {
             // val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK) {
-                // Successfully signed in
                 // Update menu
                 invalidateOptionsMenu()
-            } else {
-                Toast.makeText(applicationContext,
-                        resources.getString(R.string.login_failed),
-                        Toast.LENGTH_SHORT).show()
             }
         }
     }
