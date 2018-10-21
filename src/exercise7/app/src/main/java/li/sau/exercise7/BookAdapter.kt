@@ -57,6 +57,16 @@ class BookListAdapter internal constructor(context: Context) : RecyclerView.Adap
         notifyItemInserted(books.size - 1)
     }
 
+    internal fun getBook(index: Int): Book {
+        return books[index]
+    }
+
+    internal fun removeBook(bookPosition: Int) {
+        books.removeAt(bookPosition)
+        notifyItemRemoved(bookPosition)
+        //notifyItemRangeChanged(bookPosition, books.size)
+    }
+
     override fun getItemCount() = books.size
 
 }

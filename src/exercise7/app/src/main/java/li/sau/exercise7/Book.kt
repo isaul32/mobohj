@@ -3,6 +3,8 @@ package li.sau.exercise7
 import java.util.*
 
 data class Book(
+        var id: String? = null,
+
         var name: String,
 
         var isbn: String? = null,
@@ -11,5 +13,5 @@ data class Book(
 
         var dateOfAcquisition: Date? = null
 ) {
-    constructor() : this("nameless", null, null, null)
+    constructor() : this(null, "nameless", null, null, null)
 }
