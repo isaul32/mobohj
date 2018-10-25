@@ -75,11 +75,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
 
-        /*
         val tty = LatLng(61.4497519, 23.8553163)
-        mMap.addMarker(MarkerOptions().position(tty).title("Marker in TTY"))
+        //mMap.addMarker(MarkerOptions().position(tty).title("Marker in TTY"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tty, 13f))
-        */
+
 
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
