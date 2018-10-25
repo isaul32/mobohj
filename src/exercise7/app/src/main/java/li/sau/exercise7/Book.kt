@@ -12,6 +12,8 @@ data class Book(
         var yearOfPublication: Int? = null,
 
         var dateOfAcquisition: Date? = null
+
+
 ) {
     constructor() : this(null, "nameless", null, null, null)
 }

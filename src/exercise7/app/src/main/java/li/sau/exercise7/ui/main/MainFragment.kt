@@ -72,17 +72,18 @@ class MainFragment : Fragment() {
                                     .addSnapshotListener { result, _ ->
                                         result?.let { snapshots ->
                                             snapshots.documentChanges.forEach { dc ->
+                                                val book = dc.document.toObject(Book::class.java)
+                                                book.id = dc.document.id
                                                 when (dc.type) {
                                                     DocumentChange.Type.ADDED -> {
-                                                        val book = dc.document.toObject(Book::class.java)
-                                                        book.id = dc.document.id
                                                         adapter.addBook(book)
                                                     }
                                                     DocumentChange.Type.REMOVED -> {
-                                                        // Todo
+                                                        adapter.removeBook(book)
                                                     }
                                                     DocumentChange.Type.MODIFIED -> {
-                                                        // Todo
+                                                        adapter.removeBook(book)
+                                                        adapter.addBook(book)
                                                     }
                                                 }
                                             }

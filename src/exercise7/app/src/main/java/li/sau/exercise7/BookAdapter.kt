@@ -61,10 +61,28 @@ class BookListAdapter internal constructor(context: Context) : RecyclerView.Adap
         return books[index]
     }
 
+    internal fun removeBook(book: Book) {
+
+        // Should use iterator
+        var position = -1
+        books.forEachIndexed { index, saved ->
+            if (book.id.equals(saved.id)) {
+                position = index
+            }
+        }
+
+        if (position >= 0) {
+            removeBook(position)
+        }
+    }
+
     internal fun removeBook(bookPosition: Int) {
         books.removeAt(bookPosition)
         notifyItemRemoved(bookPosition)
-        //notifyItemRangeChanged(bookPosition, books.size)
+    }
+
+    internal fun removeBooks() {
+        books.clear()
     }
 
     override fun getItemCount() = books.size

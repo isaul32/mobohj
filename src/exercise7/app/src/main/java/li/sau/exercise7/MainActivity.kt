@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.view.Menu
 import android.view.MenuItem
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import li.sau.exercise7.ui.main.LoginFragment
 import li.sau.exercise7.ui.main.MainFragment
 
 
@@ -19,9 +21,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow()
+            FirebaseAuth.getInstance().currentUser?.let {
+                // List fragment
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, MainFragment.newInstance())
+                        .commitNow()
+                findViewById<FloatingActionButton>(R.id.fab).show()
+            } ?: run {
+                // Login info fragment
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, LoginFragment.newInstance())
+                        .commitNow()
+                findViewById<FloatingActionButton>(R.id.fab).hide()
+            }
+
         }
 
     }
@@ -54,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                         .signOut(this)
                         .addOnCompleteListener {
                             invalidateOptionsMenu()
+                            supportFragmentManager.beginTransaction()
+                                    .replace(R.id.container, LoginFragment.newInstance())
+                                    .commitNow()
+                            findViewById<FloatingActionButton>(R.id.fab).hide()
                         }
                 true
             }
@@ -71,6 +88,10 @@ class MainActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 // Update menu
                 invalidateOptionsMenu()
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, MainFragment.newInstance())
+                        .commitNow()
+                findViewById<FloatingActionButton>(R.id.fab).show()
             }
         }
     }
