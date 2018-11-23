@@ -2,7 +2,7 @@ package li.sau.projectwork.data;
 
 import java.util.List;
 
-import li.sau.projectwork.model.BlogPost;
+import li.sau.projectwork.model.blog.Post;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -22,7 +22,7 @@ public class WordPressAPIServiceImpl {
     public interface WordPressAPIService {
 
         @GET("/wp-json/wp/v2/posts")
-        Call<List<BlogPost>> getBlogPosts();
+        Call<List<Post>> getBlogPosts();
 
     }
 

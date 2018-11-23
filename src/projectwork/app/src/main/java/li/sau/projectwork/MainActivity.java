@@ -16,7 +16,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
-import li.sau.projectwork.workers.BlogPostWorker;
+import li.sau.projectwork.workers.blog.PostWorker;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(BlogPostWorker.class).build();
+        OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(PostWorker.class).build();
         WorkManager.getInstance().enqueue(work);
     }
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        /*if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        }
+        }*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

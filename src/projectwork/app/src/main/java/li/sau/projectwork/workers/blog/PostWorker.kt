@@ -1,4 +1,4 @@
-package li.sau.projectwork.workers
+package li.sau.projectwork.workers.blog
 
 import android.content.Context
 import android.util.Log
@@ -8,11 +8,11 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.data.WordPressAPICalls
-import li.sau.projectwork.model.BlogPost
+import li.sau.projectwork.model.blog.Post
 import java.io.IOException
 
-class BlogPostWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
-    private val TAG by lazy { BlogPostWorker::class.java.simpleName }
+class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
+    private val TAG by lazy { PostWorker::class.java.simpleName }
 
     override fun doWork(): ListenableWorker.Result {
         try {
@@ -20,24 +20,24 @@ class BlogPostWorker(context: Context, workerParams: WorkerParameters) : Worker(
             if (res.isSuccessful) {
                 val blogPosts = res.body()
 
-                blogPosts?.let {
+                blogPosts?.let { posts ->
                     val database = AppDatabase.getInstance(applicationContext)
-                    database.blogPostDao().insertAll(it)
+                    database.blogPostDao().insertAll(posts)
 
-                    val data = mapOf("posts" to it.map(BlogPost::id).toLongArray())
+                    val data = mapOf("posts" to posts.map(Post::id).toLongArray())
 
                     // Have to use putAll because put is restrict to group
                     outputData = Data.Builder()
                             .putAll(data)
                             .build()
+                    return Result.SUCCESS
                 }
             }
         } catch (ex: IOException) {
             Log.e(TAG, ex.localizedMessage, ex)
-            return Result.FAILURE
         }
 
-        return Result.SUCCESS
+        return Result.FAILURE
     }
 
 
