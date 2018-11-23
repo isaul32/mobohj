@@ -16,14 +16,10 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
-import li.sau.projectwork.worker.BlogWorker;
+import li.sau.projectwork.workers.BlogPostWorker;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private int connectTimeout = 10_000;
-    private int readTimeout = 10_000;
-    private int writeTimeout = 10_000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(BlogWorker.class).build();
+        OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(BlogPostWorker.class).build();
         WorkManager.getInstance().enqueue(work);
     }
 
