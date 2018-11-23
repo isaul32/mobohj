@@ -3,4 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="goforePrimary1">#FF8551</color>
+    <color name="goforePrimary2">#343F68</color>
+    <color name="goforeAdditional1">#FFDACA</color>
+    <color name="goforeAdditional2">#787DA0</color>
+    <color name="goforeAdditional3">#DEDEE2</color>
+    <color name="goforePrimaryDark1">#cc6b41</color>
+    <color name="goforePrimaryDark2">#262f4d</color>
+    <color name="goforeAdditionalLight1">#fff6f2</color>
 </resources>
