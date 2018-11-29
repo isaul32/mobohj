@@ -9,6 +9,10 @@ import androidx.work.WorkerParameters
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.data.WordPressAPICalls
 import li.sau.projectwork.model.blog.Post
+import li.sau.projectwork.utils.BASE_URI
+import org.jsoup.Jsoup
+import org.jsoup.safety.Cleaner
+import org.jsoup.safety.Whitelist
 import java.io.IOException
 
 class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
@@ -22,6 +26,14 @@ class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(cont
 
                 blogPosts?.let { posts ->
                     val database = AppDatabase.getInstance(applicationContext)
+
+                    posts.forEach {
+                        it.content.cleaned = convertHTML(it.content.rendered)
+                        it.excerpt.cleaned = convertHTML(it.excerpt.rendered)
+                        it.guid.cleaned = convertHTML(it.guid.rendered)
+                        it.title.cleaned = convertHTML(it.title.rendered)
+                    }
+
                     database.blogPostDao().insertAll(posts)
 
                     val data = mapOf("posts" to posts.map(Post::id).toLongArray())
@@ -40,5 +52,18 @@ class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(cont
         return Result.FAILURE
     }
 
+    fun convertHTML(html: String): String {
+        val dirty = Jsoup.parseBodyFragment(html, BASE_URI)
+        val cleaner = Cleaner(Whitelist.relaxed().preserveRelativeLinks(true))
+        val clean = cleaner.clean(dirty)
 
+        for (img in clean.select("img[src]")) {
+            val src = img.attr("src")
+            val abs = img.absUrl("src")
+            img.attr("src", abs)
+        }
+
+
+        return clean.body().html().toString()
+    }
 }
