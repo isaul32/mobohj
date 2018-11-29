@@ -46,7 +46,7 @@ class GlideImageGetter(
                         wrapper.setDrawable(drawable)
                         //wrapper.invalidateSelf()
                         //mTextView.invalidate()
-                        mTextView.postInvalidate()
+                        mTextView.invalidate()
                     }
 
                     override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {

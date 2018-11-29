@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     val content = post.content.cleaned
                     val excerpt = post.excerpt.cleaned
 
-                    html_view.text = Html.fromHtml("<h1>$title</h1>\n$excerpt\n$content",
+                    html_view.text = Html.fromHtml("<font color='16711680' face='serif'>Asd</font><h1>$title</h1>\n$excerpt\n$content",
                             Html.FROM_HTML_MODE_COMPACT,
                             GlideImageGetter(this, html_view),
                             null)
