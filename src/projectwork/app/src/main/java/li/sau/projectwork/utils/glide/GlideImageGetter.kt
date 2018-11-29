@@ -44,9 +44,9 @@ class GlideImageGetter(
                         drawable.bounds = bounds
                         wrapper.bounds = bounds
                         wrapper.setDrawable(drawable)
-                        //wrapper.invalidateSelf()
+                        wrapper.invalidateSelf()
                         //mTextView.invalidate()
-                        mTextView.invalidate()
+                        //mTextView.invalidate()
                     }
 
                     override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
