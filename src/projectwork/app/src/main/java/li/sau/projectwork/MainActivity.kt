@@ -1,7 +1,9 @@
 package li.sau.projectwork
 
+//import android.text.Html
 import android.os.Bundle
-import android.text.Html
+import android.text.format.DateFormat
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -17,10 +19,16 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.content_main.*
 import li.sau.projectwork.data.AppDatabase
-import li.sau.projectwork.utils.glide.GlideImageGetter
+import li.sau.projectwork.utils.BASE_URI
+import li.sau.projectwork.utils.html.DefaultTagHandler
+import li.sau.projectwork.utils.html.Html
 import li.sau.projectwork.workers.blog.PostWorker
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private val TAG = MainActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,15 +67,42 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val database = AppDatabase.getInstance(applicationContext)
         database.blogPostDao().getAll()
                 .observe(this, Observer { posts ->
-                    val post = posts[1]
-                    val title = post.title.cleaned
-                    val content = post.content.cleaned
-                    val excerpt = post.excerpt.cleaned
+                    val post = posts[2]
+                    val title = post.title.rendered
 
-                    html_view.text = Html.fromHtml("<font color='16711680' face='serif'>Asd</font><h1>$title</h1>\n$excerpt\n$content",
-                            Html.FROM_HTML_MODE_COMPACT,
-                            GlideImageGetter(this, html_view),
-                            null)
+                    val htmlToSpanned = DefaultTagHandler(this, html_view, BASE_URI)
+                    val sb = StringBuilder()
+
+                    // Add title
+                    sb.append("<h1>$title</h1>")
+                    sb.append("\n")
+
+                    // Try add date
+                    try {
+
+                        val dateFormatGmt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
+                        dateFormatGmt.timeZone = TimeZone.getTimeZone("GMT")
+                        val date = dateFormatGmt.parse(post.date_gmt)
+
+                        // Use system locale
+                        val formattedDate = DateFormat.getDateFormat(this).format(date)
+                        sb.append("<h6>$formattedDate</h6>")
+                        sb.append("\n")
+
+                    } catch (e: ParseException) {
+                        Log.w(TAG, "Could not parse date: " + post.date)
+                    }
+
+                    // Add excerpt
+                    val excerpt = post.excerpt.rendered
+                    sb.append(excerpt)
+
+                    // add content
+                    sb.append("\n")
+                    val content = post.content.rendered
+                    sb.append(content)
+
+                    html_view.text = Html.fromHtml(sb.toString(), htmlToSpanned)
                 })
     }
 

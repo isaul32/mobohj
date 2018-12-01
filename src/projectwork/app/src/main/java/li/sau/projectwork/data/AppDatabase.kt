@@ -8,7 +8,7 @@ import li.sau.projectwork.data.blog.PostDao
 import li.sau.projectwork.model.blog.Post
 import li.sau.projectwork.utils.DATABASE_NAME
 
-@Database(entities = [Post::class], version = 5)
+@Database(entities = [Post::class], version = 6)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun blogPostDao(): PostDao
 
