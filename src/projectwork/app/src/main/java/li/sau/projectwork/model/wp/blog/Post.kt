@@ -1,4 +1,4 @@
-package li.sau.projectwork.model.blog
+package li.sau.projectwork.model.wp.blog
 
 import androidx.room.Embedded
 import androidx.room.Entity

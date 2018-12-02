@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import li.sau.projectwork.data.blog.PostDao
-import li.sau.projectwork.model.blog.Post
+import li.sau.projectwork.model.wp.blog.Post
 import li.sau.projectwork.utils.DATABASE_NAME
 
-@Database(entities = [Post::class], version = 6)
+@Database(entities = [Post::class], version = 7)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun blogPostDao(): PostDao
 

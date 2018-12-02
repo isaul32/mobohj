@@ -8,7 +8,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.data.wp.WordPressAPICalls
-import li.sau.projectwork.model.blog.Post
+import li.sau.projectwork.model.wp.blog.Post
 import java.io.IOException
 
 class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
@@ -16,7 +16,7 @@ class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(cont
 
     override fun doWork(): ListenableWorker.Result {
         try {
-            val res = WordPressAPICalls.getBlogPosts().execute()
+            val res = WordPressAPICalls.getPosts().execute()
             if (res.isSuccessful) {
                 val blogPosts = res.body()
 

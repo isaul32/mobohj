@@ -2,7 +2,7 @@ package li.sau.projectwork.data.blog
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import li.sau.projectwork.model.blog.Post
+import li.sau.projectwork.model.wp.blog.Post
 
 /**
  * Data access object for blog post and prove CRUD operations
