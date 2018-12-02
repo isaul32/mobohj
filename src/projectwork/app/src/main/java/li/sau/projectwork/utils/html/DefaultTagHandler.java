@@ -15,6 +15,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.AlignmentSpan;
+import android.text.style.BulletSpan;
 import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
@@ -38,6 +39,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import li.sau.projectwork.BuildConfig;
+import li.sau.projectwork.R;
 
 public class DefaultTagHandler implements TagHandler {
     private static final String TAG = DefaultTagHandler.class.getSimpleName();
@@ -89,6 +91,12 @@ public class DefaultTagHandler implements TagHandler {
                 startCssStyle(spannableStringBuilder, attributes);
                 startFont(spannableStringBuilder, mBodyTextTypeface);
                 break;
+            case "ul":
+                startBlockElement(spannableStringBuilder, attributes, 1);
+                break;
+            case "li":
+                startLi(spannableStringBuilder, attributes);
+                break;
             case "h1":
             case "h2":
             case "h3":
@@ -119,6 +127,12 @@ public class DefaultTagHandler implements TagHandler {
                 endFont(spannableStringBuilder);
                 endCssStyle(spannableStringBuilder);
                 endBlockElement(spannableStringBuilder);
+                break;
+            case "ul":
+                endBlockElement(spannableStringBuilder);
+                break;
+            case "li":
+                endLi(spannableStringBuilder);
                 break;
             case "h1":
             case "h2":
@@ -191,10 +205,37 @@ public class DefaultTagHandler implements TagHandler {
         }
     }
 
+    private void startLi(Editable text, Attributes attributes) {
+        startBlockElement(text, attributes, 1);
+        start(text, new TextUtils.Bullet());
+        startCssStyle(text, attributes);
+    }
+
     private void endCssStyle(Editable text) {
         TextUtils.Strikethrough s = getLast(text, TextUtils.Strikethrough.class);
         if (s != null) {
             setSpanFromMark(text, s, new StrikethroughSpan());
+        }
+    }
+
+    private void endLi(Editable text) {
+        endCssStyle(text);
+        endBlockElement(text);
+        int bulletColor = mContext.getColor(R.color.goforePrimary1);
+        float density = mContext.getResources().getDisplayMetrics().density;
+        int gapWidth = Math.round((float) 80 / density);
+        int bulletRadius = Math.round((float) 30 / density);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            end(text, TextUtils.Bullet.class, new BulletSpan(gapWidth, bulletColor, bulletRadius));
+        } else {
+            end(text, TextUtils.Bullet.class, new BulletSpan(gapWidth, bulletColor));
+        }
+    }
+
+    private void end(Editable text, Class kind, Object repl) {
+        Object obj = getLast(text, kind);
+        if (obj != null) {
+            setSpanFromMark(text, obj, repl);
         }
     }
 
