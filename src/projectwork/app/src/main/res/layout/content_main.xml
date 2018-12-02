@@ -24,7 +24,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:justificationMode="inter_word" />
+                android:justificationMode="inter_word"
+                android:textColor="@color/goforeBodyText"/>
 
         </LinearLayout>
 

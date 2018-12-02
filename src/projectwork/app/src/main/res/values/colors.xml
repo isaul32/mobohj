@@ -10,5 +10,6 @@
     <color name="goforeAdditional3">#DEDEE2</color>
     <color name="goforePrimaryDark1">#cc6b41</color>
     <color name="goforePrimaryDark2">#262f4d</color>
-    <color name="goforeAdditionalLight1">#fff6f2</color>
+    <color name="goforeAdditionalLight1">#ffffff</color>
+    <color name="goforeBodyText">#707070</color>
 </resources>
