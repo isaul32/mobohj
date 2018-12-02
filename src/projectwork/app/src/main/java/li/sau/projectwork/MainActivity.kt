@@ -3,6 +3,7 @@ package li.sau.projectwork
 //import android.text.Html
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val database = AppDatabase.getInstance(applicationContext)
         database.blogPostDao().getAll()
                 .observe(this, Observer { posts ->
-                    val post = posts[2]
+                    val post = posts[6]
                     val title = post.title.rendered
 
                     val htmlToSpanned = DefaultTagHandler(this, html_view,
@@ -105,6 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     sb.append(content)
 
                     html_view.text = Html.fromHtml(sb.toString(), htmlToSpanned)
+                    html_view.movementMethod = LinkMovementMethod()
                 })
     }
 

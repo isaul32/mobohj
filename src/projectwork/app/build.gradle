@@ -33,12 +33,13 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.1'
     implementation 'androidx.fragment:fragment-ktx:1.0.0'
     implementation 'androidx.collection:collection-ktx:1.0.0'
-    implementation 'android.arch.work:work-runtime-ktx:1.0.0-alpha11'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation 'android.arch.work:work-runtime-ktx:1.0.0-alpha11'
     implementation 'com.google.android.material:material:1.1.0-alpha01'
-    implementation "android.arch.persistence.room:runtime:$roomVersion"
     implementation 'com.squareup.okio:okio:1.14.0'
     implementation 'com.squareup.moshi:moshi:1.5.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'

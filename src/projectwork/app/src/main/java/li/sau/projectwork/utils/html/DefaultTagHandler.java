@@ -21,6 +21,7 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
+import android.text.style.URLSpan;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -97,6 +98,9 @@ public class DefaultTagHandler implements TagHandler {
             case "li":
                 startLi(spannableStringBuilder, attributes);
                 break;
+            case "a":
+                startA(spannableStringBuilder, attributes);
+                break;
             case "h1":
             case "h2":
             case "h3":
@@ -133,6 +137,9 @@ public class DefaultTagHandler implements TagHandler {
                 break;
             case "li":
                 endLi(spannableStringBuilder);
+                break;
+            case "a":
+                endA(spannableStringBuilder);
                 break;
             case "h1":
             case "h2":
@@ -211,6 +218,11 @@ public class DefaultTagHandler implements TagHandler {
         startCssStyle(text, attributes);
     }
 
+    private void startA(Editable text, Attributes attributes) {
+        String href = attributes.getValue("", "href");
+        start(text, new TextUtils.Href(href));
+    }
+
     private void endCssStyle(Editable text) {
         TextUtils.Strikethrough s = getLast(text, TextUtils.Strikethrough.class);
         if (s != null) {
@@ -229,6 +241,15 @@ public class DefaultTagHandler implements TagHandler {
             end(text, TextUtils.Bullet.class, new BulletSpan(gapWidth, bulletColor, bulletRadius));
         } else {
             end(text, TextUtils.Bullet.class, new BulletSpan(gapWidth, bulletColor));
+        }
+    }
+
+    private void endA(Editable text) {
+        TextUtils.Href h = getLast(text, TextUtils.Href.class);
+        if (h != null) {
+            if (h.mHref != null) {
+                setSpanFromMark(text, h, new URLSpan((h.mHref)));
+            }
         }
     }
 
