@@ -29,8 +29,11 @@ import com.squareup.picasso.Target;
 import org.xml.sax.Attributes;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -238,10 +241,7 @@ public class DefaultTagHandler implements TagHandler {
     }
 
     private void startImg(Editable text, Attributes attributes) {
-        String src = attributes.getValue("", "src");
-        if (mBaseUri != null) {
-            src = mBaseUri + src;
-        }
+        final int viewWidth = mTextView.getWidth();
 
         // Calculate image size
         int width;
@@ -256,8 +256,50 @@ public class DefaultTagHandler implements TagHandler {
             return;
         }
 
+        int distance = Math.abs(viewWidth - width);
+
+        // Try find the best image version for view
+        Map<Integer, String> options = new TreeMap<>();
+
+        // Add default src option
+        options.put(distance, getAbsUrl(attributes.getValue("", "src")));
+
+        // Try get other src options
+        String srcset = attributes.getValue("", "srcset");
+        if (srcset != null) {
+
+            String[] srcs = srcset.split(",[ ]*");
+            for (String src : srcs) {
+                String[] srcInfo = src.split("\\s+");
+                if (srcInfo.length == 2) {
+                    String imgWidthInfo = srcInfo[1];
+                    int pos = imgWidthInfo.length() - 1;
+                    if (imgWidthInfo.length() > 1
+                            && imgWidthInfo.charAt(imgWidthInfo.length() - 1) == 'w') {
+                        try {
+                            int imgWidth = Integer.parseInt(imgWidthInfo.substring(0, pos));
+                            int imgDistance = Math.abs(viewWidth - imgWidth);
+                            String imgSrc = getAbsUrl(srcInfo[0]);
+
+                            options.put(imgDistance, imgSrc);
+                        } catch (NumberFormatException e) {
+                            Log.w(TAG, "Invalid width", e);
+                        }
+                    }
+                }
+            }
+        }
+
+        String selectedSrc;
+        Iterator<Map.Entry<Integer, String>> iterator = options.entrySet().iterator();
+        if (iterator.hasNext()) {
+            selectedSrc = iterator.next().getValue();
+        } else {
+            // There should be at least default value
+            return;
+        }
+
         final float ratio = (float) width / (float) height;
-        final int viewWidth = mTextView.getWidth();
         final int resizedHeight = Math.round((float) viewWidth / ratio);
 
         // Make wrapper for the image
@@ -293,11 +335,19 @@ public class DefaultTagHandler implements TagHandler {
 
         // Resize image to original size
         Picasso.get()
-                .load(src)
+                .load(selectedSrc)
                 .into(target);
 
         int len = text.length();
         text.append("\uFFFC");
-        text.setSpan(new ImageSpan(wrapper, src), len, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        text.setSpan(new ImageSpan(wrapper, selectedSrc), len, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+
+    private String getAbsUrl(String url) {
+        if (mBaseUri != null) {
+            return mBaseUri + url;
+        }
+
+        return url;
     }
 }
