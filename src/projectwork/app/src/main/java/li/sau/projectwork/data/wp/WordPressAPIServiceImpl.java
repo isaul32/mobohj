@@ -28,14 +28,17 @@ public class WordPressAPIServiceImpl {
         @GET("/wp-json/wp/v2/posts")
         Call<List<Post>> getPosts();
 
+        @GET("/wp-json/wp/v2/posts")
+        Call<List<Post>> getPosts(@Query("page") Long page);
+
         @GET("/wp-json/wp/v2/posts/{postId}")
-        Call<Post> getPost(@Path("postId") String postId);
+        Call<Post> getPost(@Path("postId") Long postId);
 
         @GET("/wp-json/wp/v2/users/{userId}")
-        Call<User> getUser(@Path("userId") String userId);
+        Call<User> getUser(@Path("userId") Long userId);
 
         @GET("/wp-json/wp/v2/tags")
-        Call<List<Tag>> getTags(@Query("post") String postId);
+        Call<List<Tag>> getTags(@Query("post") Long postId);
     }
 
 }
