@@ -1,4 +1,4 @@
-package li.sau.projectwork.data;
+package li.sau.projectwork.data.wp;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;

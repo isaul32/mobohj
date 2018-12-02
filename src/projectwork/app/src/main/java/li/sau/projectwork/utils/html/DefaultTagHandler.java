@@ -37,6 +37,8 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import li.sau.projectwork.BuildConfig;
+
 public class DefaultTagHandler implements TagHandler {
     private static final String TAG = DefaultTagHandler.class.getSimpleName();
     private static final float[] HEADING_SIZES = {
@@ -355,8 +357,15 @@ public class DefaultTagHandler implements TagHandler {
         };
         mTargets.add(target);
 
-        // Resize image to original size
-        Picasso.get()
+        // Get picasso instance
+        Picasso picasso = Picasso.get();
+
+        if (BuildConfig.DEBUG) {
+            picasso.setLoggingEnabled(true);
+        }
+
+        // Try load the image
+        picasso
                 .load(selectedSrc)
                 .into(target);
 

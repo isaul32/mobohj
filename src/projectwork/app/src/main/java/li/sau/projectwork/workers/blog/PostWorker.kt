@@ -7,7 +7,7 @@ import androidx.work.ListenableWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import li.sau.projectwork.data.AppDatabase
-import li.sau.projectwork.data.WordPressAPICalls
+import li.sau.projectwork.data.wp.WordPressAPICalls
 import li.sau.projectwork.model.blog.Post
 import java.io.IOException
 

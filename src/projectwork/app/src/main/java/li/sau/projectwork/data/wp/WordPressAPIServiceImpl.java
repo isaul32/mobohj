@@ -1,4 +1,4 @@
-package li.sau.projectwork.data;
+package li.sau.projectwork.data.wp;
 
 import java.util.List;
 
