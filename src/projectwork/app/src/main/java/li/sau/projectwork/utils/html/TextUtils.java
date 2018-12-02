@@ -1,5 +1,6 @@
 package li.sau.projectwork.utils.html;
 
+import android.graphics.Typeface;
 import android.text.Layout;
 
 public class TextUtils {
@@ -49,10 +50,10 @@ public class TextUtils {
     }
 
     public static class Font {
-        public String mFace;
+        public Typeface mTypeface;
 
-        public Font(String face) {
-            mFace = face;
+        public Font(Typeface typeface) {
+            mTypeface = typeface;
         }
     }
 

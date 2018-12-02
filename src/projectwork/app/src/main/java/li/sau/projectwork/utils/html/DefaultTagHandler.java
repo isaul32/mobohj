@@ -8,18 +8,18 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableWrapper;
+import android.os.Build;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.AlignmentSpan;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -57,11 +57,20 @@ public class DefaultTagHandler implements TagHandler {
     private Set<Target> mTargets = new HashSet<>();
     private TextView mTextView;
     private String mBaseUri;
+    private Typeface mHeaderTypeface;
+    private Typeface mBodyTextTypeface;
 
-    public DefaultTagHandler(Context context, TextView textView, String baseUri) {
+
+    public DefaultTagHandler(Context context,
+                             TextView textView,
+                             String baseUri,
+                             Typeface headerTypeface,
+                             Typeface bodyTextTypeface) {
         mContext = context;
         mTextView = textView;
         mBaseUri = baseUri;
+        mHeaderTypeface = headerTypeface;
+        mBodyTextTypeface = bodyTextTypeface;
     }
 
     @Override
@@ -76,6 +85,7 @@ public class DefaultTagHandler implements TagHandler {
             case "p":
                 startBlockElement(spannableStringBuilder, attributes, 1);
                 startCssStyle(spannableStringBuilder, attributes);
+                startFont(spannableStringBuilder, mBodyTextTypeface);
                 break;
             case "h1":
             case "h2":
@@ -85,6 +95,7 @@ public class DefaultTagHandler implements TagHandler {
             case "h6":
                 int level = Character.getNumericValue(tag.charAt(1));
                 startHeading(spannableStringBuilder, attributes, level);
+                startFont(spannableStringBuilder, mHeaderTypeface);
                 break;
             case "img":
                 startImg(spannableStringBuilder, attributes);
@@ -103,6 +114,7 @@ public class DefaultTagHandler implements TagHandler {
         String tagLowered = tag.toLowerCase(Locale.ROOT);
         switch (tag.toLowerCase(Locale.ROOT)) {
             case "p":
+                endFont(spannableStringBuilder);
                 endCssStyle(spannableStringBuilder);
                 endBlockElement(spannableStringBuilder);
                 break;
@@ -112,6 +124,7 @@ public class DefaultTagHandler implements TagHandler {
             case "h4":
             case "h5":
             case "h6":
+                endFont(spannableStringBuilder);
                 endHeading(spannableStringBuilder);
                 break;
             case "img":
@@ -181,14 +194,6 @@ public class DefaultTagHandler implements TagHandler {
         if (s != null) {
             setSpanFromMark(text, s, new StrikethroughSpan());
         }
-        TextUtils.Background b = getLast(text, TextUtils.Background.class);
-        if (b != null) {
-            setSpanFromMark(text, b, new BackgroundColorSpan(b.mBackgroundColor));
-        }
-        TextUtils.Foreground f = getLast(text, TextUtils.Foreground.class);
-        if (f != null) {
-            setSpanFromMark(text, f, new ForegroundColorSpan(f.mForegroundColor));
-        }
     }
 
     private <T> T getLast(Spanned text, Class<T> kind) {
@@ -228,6 +233,11 @@ public class DefaultTagHandler implements TagHandler {
         startBlockElement(text, attributes, 1);
         start(text, new TextUtils.Heading(level - 1));
     }
+    private void startFont(Editable text, Typeface typeface) {
+        if (typeface != null) {
+            start(text, new TextUtils.Font(typeface));
+        }
+    }
 
     private void endHeading(Editable text) {
         // RelativeSizeSpan and StyleSpan are CharacterStyles
@@ -238,6 +248,18 @@ public class DefaultTagHandler implements TagHandler {
                     new StyleSpan(Typeface.BOLD));
         }
         endBlockElement(text);
+    }
+
+    private void endFont(Editable text) {
+        TextUtils.Font font = getLast(text, TextUtils.Font.class);
+        if (font != null) {
+            if (font.mTypeface != null) {
+                // Require API level 28
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    setSpanFromMark(text, font, new TypefaceSpan(font.mTypeface));
+                }
+            }
+        }
     }
 
     private void startImg(Editable text, Attributes attributes) {
@@ -350,4 +372,5 @@ public class DefaultTagHandler implements TagHandler {
 
         return url;
     }
+
 }

@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -70,7 +71,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     val post = posts[2]
                     val title = post.title.rendered
 
-                    val htmlToSpanned = DefaultTagHandler(this, html_view, BASE_URI)
+                    val htmlToSpanned = DefaultTagHandler(this, html_view,
+                            BASE_URI,
+                            ResourcesCompat.getFont(this, R.font.lato),
+                            ResourcesCompat.getFont(this, R.font.aleo))
                     val sb = StringBuilder()
 
                     // Add title
