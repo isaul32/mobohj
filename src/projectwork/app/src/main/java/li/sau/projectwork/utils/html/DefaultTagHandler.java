@@ -389,7 +389,7 @@ public class DefaultTagHandler implements TagHandler {
         final int resizedHeight = Math.round((float) viewWidth / ratio);
 
         // Make wrapper for the image
-        final DrawableWrapper wrapper = new HtmlDrawableWrapper(new ColorDrawable(Color.RED));
+        final DrawableWrapper wrapper = new HtmlDrawableWrapper(new ColorDrawable(Color.parseColor("#EAEAEA")));
 
         // Set bounds to right
         wrapper.setBounds(0, 0, viewWidth, resizedHeight);
