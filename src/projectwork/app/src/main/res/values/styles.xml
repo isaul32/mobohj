@@ -11,18 +11,20 @@
         -->
 
         <!-- Blue theme v2 -->
-        <!--
+
         <item name="colorPrimary">@color/goforePrimaryDark2</item>
         <item name="colorPrimaryDark">@color/goforePrimaryDark2</item>
         <item name="colorAccent">@color/goforePrimary1</item>
         <item name="android:windowBackground">@color/goforePrimary2</item>
-        -->
+
 
         <!-- Orange theme -->
+        <!--
         <item name="android:windowBackground">@color/goforeAdditionalLight1</item>
         <item name="colorPrimary">@color/goforePrimary1</item>
         <item name="colorPrimaryDark">@color/goforePrimaryDark1</item>
         <item name="colorAccent">@color/goforePrimary1</item>
+        -->
     </style>
 
     <style name="AppTheme.NoActionBar">
