@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity(),
 
         setupActionBar(mNavController)
         setupNavigationMenu(mNavController)
+
+        nav.setNavigationItemSelectedListener(this)
 
         /*
         fab.setOnClickListener { view ->
@@ -96,19 +98,15 @@ class MainActivity : AppCompatActivity(),
         // Handle navigation view item clicks here.
         val id = item.itemId
 
-        /*if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
+        when (id) {
+            R.id.nav_blogs -> findNavController(R.id.my_nav_host_fragment).navigate(R.id.blogsFragment)
+            R.id.nav_videos -> Unit
+            R.id.nav_pictures -> Unit
+            R.id.nav_contact_us -> Unit
+            R.id.nav_settings -> Unit
+            R.id.nav_about -> findNavController(R.id.my_nav_host_fragment).navigate(R.id.aboutFragment)
+        }
 
         drawer.closeDrawer(GravityCompat.START)
         return true
@@ -117,7 +115,7 @@ class MainActivity : AppCompatActivity(),
     override fun onSupportNavigateUp(): Boolean {
         // Allows NavigationUI to support proper up navigation or the drawer layout
         // drawer menu, depending on the situation
-        return drawer.navigateUp(findNavController(R.id.my_nav_host_fragment))
+        return NavigationUI.navigateUp(findNavController(R.id.my_nav_host_fragment), drawer)
     }
 
     private fun renderBlog() {

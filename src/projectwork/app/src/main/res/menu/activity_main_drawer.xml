@@ -5,29 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_blog"
+            android:id="@+id/nav_blogs"
             android:icon="@drawable/ic_menu_whatshot"
-            android:title="Blogs" />
+            android:title="@string/blogs" />
         <item
-            android:id="@+id/nav_media"
+            android:id="@+id/nav_videos"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Videos" />
+            android:title="@string/videos" />
         <item
             android:id="@+id/nav_pictures"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Pictures" />
+            android:title="@string/pictures" />
         <item
             android:id="@+id/nav_contact_us"
             android:icon="@drawable/ic_menu_phone_msg"
-            android:title="Contact us" />
+            android:title="@string/contact_us" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
-            android:title="Settings" />
+            android:title="@string/settings" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_info_outline"
-            android:title="About" />
+            android:title="@string/about" />
     </group>
 
 </menu>
