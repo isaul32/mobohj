@@ -90,7 +90,7 @@ public class DefaultTagHandler implements TagHandler {
             case "p":
                 startBlockElement(spannableStringBuilder, attributes, 1);
                 startCssStyle(spannableStringBuilder, attributes);
-                startFont(spannableStringBuilder, mBodyTextTypeface);
+                startFont(spannableStringBuilder, "serif", mBodyTextTypeface);
                 break;
             case "ul":
                 startBlockElement(spannableStringBuilder, attributes, 1);
@@ -109,7 +109,7 @@ public class DefaultTagHandler implements TagHandler {
             case "h6":
                 int level = Character.getNumericValue(tag.charAt(1));
                 startHeading(spannableStringBuilder, attributes, level);
-                startFont(spannableStringBuilder, mHeaderTypeface);
+                startFont(spannableStringBuilder, "sans-serif", mHeaderTypeface);
                 break;
             case "img":
                 startImg(spannableStringBuilder, attributes);
@@ -297,9 +297,9 @@ public class DefaultTagHandler implements TagHandler {
         startBlockElement(text, attributes, 1);
         start(text, new TextUtils.Heading(level - 1));
     }
-    private void startFont(Editable text, Typeface typeface) {
+    private void startFont(Editable text, String family, Typeface typeface) {
         if (typeface != null) {
-            start(text, new TextUtils.Font(typeface));
+            start(text, new TextUtils.Font(family, typeface));
         }
     }
 
@@ -321,6 +321,8 @@ public class DefaultTagHandler implements TagHandler {
                 // Require API level 28
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     setSpanFromMark(text, font, new TypefaceSpan(font.mTypeface));
+                } else {
+                    setSpanFromMark(text, font, new TypefaceSpan(font.mFamily));
                 }
             }
         }

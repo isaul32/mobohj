@@ -50,9 +50,11 @@ public class TextUtils {
     }
 
     public static class Font {
+        public String mFamily;
         public Typeface mTypeface;
 
-        public Font(Typeface typeface) {
+        public Font(String family, Typeface typeface) {
+            mFamily = family;
             mTypeface = typeface;
         }
     }
