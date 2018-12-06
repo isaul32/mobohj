@@ -15,7 +15,6 @@
         <item name="colorPrimaryDark">@color/goforePrimary2</item>
         <item name="colorAccent">@color/goforePrimary1</item>
         <item name="android:windowBackground">@color/goforeAdditionalLight1</item>
-        <item name="android:actionMenuTextColor">@color/goforePrimary1</item>
         <!--<item name="android:windowBackground">@color/goforePrimary2</item>-->
 
 
