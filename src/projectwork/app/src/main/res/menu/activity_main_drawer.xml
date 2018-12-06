@@ -13,16 +13,20 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Videos / Podcasts" />
         <item
-            android:id="@+id/nav_contacts"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Contacts" />
+            android:id="@+id/nav_pictures"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Pictures" />
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/ic_menu_phone_msg"
+            android:title="Contact us" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_settings"
             android:title="Settings" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/ic_menu_info"
+            android:icon="@drawable/ic_menu_info_outline"
             android:title="About" />
     </group>
 

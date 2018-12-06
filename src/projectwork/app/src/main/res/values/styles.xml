@@ -11,11 +11,12 @@
         -->
 
         <!-- Blue theme v2 -->
-
-        <item name="colorPrimary">@color/goforePrimaryDark2</item>
-        <item name="colorPrimaryDark">@color/goforePrimaryDark2</item>
+        <item name="colorPrimary">@color/goforePrimary2</item>
+        <item name="colorPrimaryDark">@color/goforePrimary2</item>
         <item name="colorAccent">@color/goforePrimary1</item>
-        <item name="android:windowBackground">@color/goforePrimary2</item>
+        <item name="android:windowBackground">@color/goforeAdditionalLight1</item>
+        <item name="android:actionMenuTextColor">@color/goforePrimary1</item>
+        <!--<item name="android:windowBackground">@color/goforePrimary2</item>-->
 
 
         <!-- Orange theme -->
