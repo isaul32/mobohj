@@ -8,12 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import kotlinx.android.synthetic.main.fragment_blogs.*
+import li.sau.projectwork.databinding.FragmentBlogsBinding
 
 class BlogsFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_blogs, container, false)
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentBlogsBinding.inflate(inflater, container, false)
+
+        // TODO: Create adapter for blogs
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
