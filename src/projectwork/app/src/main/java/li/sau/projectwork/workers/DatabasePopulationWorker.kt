@@ -1,6 +1,7 @@
 package li.sau.projectwork.workers
 
 import android.content.Context
+import androidx.work.Result
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 
@@ -19,14 +20,15 @@ class DatabasePopulationWorker(context: Context, workerParams: WorkerParameters)
             val plantList: List<Plant> = Gson().fromJson(jsonReader, plantType)
             val database = AppDatabase.getInstance(applicationContext)
             database.plantDao().insertAll(plantList)
-            Result.SUCCESS
+            Result.success()
         } catch (ex: Exception) {
             Log.e(TAG, "Error seeding database", ex)
-            Result.FAILURE
+            Result.failure()
         } finally {
             jsonReader?.close()
         }
         */
-        return Result.FAILURE
+
+        return Result.failure()
     }
 }

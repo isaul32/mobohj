@@ -2,10 +2,7 @@ package li.sau.projectwork.workers.blog
 
 import android.content.Context
 import android.util.Log
-import androidx.work.Data
-import androidx.work.ListenableWorker
-import androidx.work.Worker
-import androidx.work.WorkerParameters
+import androidx.work.*
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.data.wp.WordPressAPICalls
 import li.sau.projectwork.model.wp.blog.Post
@@ -14,7 +11,7 @@ import java.io.IOException
 class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
     private val TAG by lazy { PostWorker::class.java.simpleName }
 
-    override fun doWork(): ListenableWorker.Result {
+    override fun doWork(): Result {
         try {
             val res = WordPressAPICalls.getPosts().execute()
             if (res.isSuccessful) {
@@ -28,16 +25,15 @@ class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(cont
                     val data = mapOf("posts" to posts.map(Post::id).toLongArray())
 
                     // Have to use putAll because put is restrict to group
-                    outputData = Data.Builder()
+                    return Result.success(Data.Builder()
                             .putAll(data)
-                            .build()
-                    return Result.SUCCESS
+                            .build())
                 }
             }
         } catch (e: IOException) {
             Log.e(TAG, e.localizedMessage, e)
         }
 
-        return Result.FAILURE
+        return Result.failure()
     }
 }
