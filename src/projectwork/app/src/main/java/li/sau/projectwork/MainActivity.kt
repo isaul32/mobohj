@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 R.layout.activity_main)
         mDrawerLayout = binding.drawerLayout
 
+        // Set up navigation controller
         mNavController = Navigation.findNavController(this, R.id.my_nav_host_fragment)
         mAppBarConfiguration = AppBarConfiguration(mNavController.graph, drawerLayout)
 
@@ -39,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         // Set up navigation menu
         binding.navigationView.setupWithNavController(mNavController)
 
+        // Set up settings
+
         /*
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -47,16 +50,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return mNavController.navigateUp(mDrawerLayout) || super.onSupportNavigateUp()
+    }
+
     override fun onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return mNavController.navigateUp(mDrawerLayout) || super.onSupportNavigateUp()
     }
 
 }

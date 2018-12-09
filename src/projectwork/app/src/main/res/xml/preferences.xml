@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="Notifications">
+
+        <SwitchPreferenceCompat
+            app:key="notifications"
+            app:title="Enable message notifications"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="syncing_category"
+        app:title="Syncing">
+
+        <SwitchPreferenceCompat
+            app:key="enable_sync"
+            app:title="Enable syncing" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="about_category"
+        app:title="About">
+
+        <Preference
+            app:key="version"
+            app:title="Build version"
+            app:summary="1.0.0" />
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>
