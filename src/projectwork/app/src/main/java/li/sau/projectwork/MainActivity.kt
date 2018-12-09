@@ -1,16 +1,15 @@
 package li.sau.projectwork
 
 import android.os.Bundle
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import kotlinx.android.synthetic.main.activity_main.*
 import li.sau.projectwork.databinding.ActivityMainBinding
 
@@ -31,7 +30,13 @@ class MainActivity : AppCompatActivity() {
 
         // Set up navigation controller
         mNavController = Navigation.findNavController(this, R.id.my_nav_host_fragment)
-        mAppBarConfiguration = AppBarConfiguration(mNavController.graph, drawerLayout)
+        val topLevelDestinations = setOf(R.id.blogsFragment,
+                R.id.settingsFragment,
+                R.id.aboutFragment)
+        mAppBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations)
+                .setDrawerLayout(drawerLayout)
+                .build()
+
 
         // Set up action bar
         setSupportActionBar(binding.toolbar)
@@ -51,7 +56,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return mNavController.navigateUp(mDrawerLayout) || super.onSupportNavigateUp()
+        return NavigationUI.navigateUp(mNavController, mAppBarConfiguration)
+                || super.onSupportNavigateUp()
     }
 
     override fun onBackPressed() {
