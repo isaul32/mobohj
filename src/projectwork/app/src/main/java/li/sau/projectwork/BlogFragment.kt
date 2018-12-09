@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import kotlinx.android.synthetic.main.fragment_blog.*
 import li.sau.projectwork.data.AppDatabase
+import li.sau.projectwork.databinding.FragmentBlogBinding
 import li.sau.projectwork.utils.BASE_URI
 import li.sau.projectwork.utils.html.DefaultTagHandler
 import li.sau.projectwork.utils.html.Html
@@ -25,11 +25,13 @@ import java.util.*
 class BlogFragment : Fragment() {
 
     private val TAG = BlogFragment::class.java.simpleName
+    private lateinit var mBinding: FragmentBlogBinding
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_blog, container, false)
+        mBinding = FragmentBlogBinding.inflate(inflater, container, false)
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +59,7 @@ class BlogFragment : Fragment() {
                 val post = posts[6]
                 val title = post.title.rendered
 
-                val htmlToSpanned = DefaultTagHandler(context, html_view,
+                val htmlToSpanned = DefaultTagHandler(context, mBinding.htmlView,
                         BASE_URI,
                         ResourcesCompat.getFont(context, R.font.lato),
                         ResourcesCompat.getFont(context, R.font.aleo))
@@ -93,8 +95,8 @@ class BlogFragment : Fragment() {
                 val content = post.content.rendered
                 sb.append(content)
 
-                html_view.text = Html.fromHtml(sb.toString(), htmlToSpanned)
-                html_view.movementMethod = LinkMovementMethod()
+                mBinding.htmlView.text = Html.fromHtml(sb.toString(), htmlToSpanned)
+                mBinding.htmlView.movementMethod = LinkMovementMethod()
             })
 
         }
