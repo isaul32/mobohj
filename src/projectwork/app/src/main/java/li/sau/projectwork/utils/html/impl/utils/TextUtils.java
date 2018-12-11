@@ -1,4 +1,4 @@
-package li.sau.projectwork.utils.html;
+package li.sau.projectwork.utils.html.impl.utils;
 
 import android.graphics.Typeface;
 import android.text.Layout;
@@ -68,7 +68,7 @@ public class TextUtils {
     }
 
     public static class Foreground {
-        int mForegroundColor;
+        public int mForegroundColor;
 
         public Foreground(int foregroundColor) {
             mForegroundColor = foregroundColor;
@@ -76,7 +76,7 @@ public class TextUtils {
     }
 
     public static class Background {
-        int mBackgroundColor;
+        public int mBackgroundColor;
 
         public Background(int backgroundColor) {
             mBackgroundColor = backgroundColor;
@@ -84,7 +84,7 @@ public class TextUtils {
     }
 
     public static class Heading {
-        int mLevel;
+        public int mLevel;
 
         public Heading(int level) {
             mLevel = level;
@@ -92,7 +92,7 @@ public class TextUtils {
     }
 
     public static class Newline {
-        int mNumNewlines;
+        public int mNumNewlines;
 
         public Newline(int numNewlines) {
             mNumNewlines = numNewlines;
@@ -100,7 +100,7 @@ public class TextUtils {
     }
 
     public static class Alignment {
-        Layout.Alignment mAlignment;
+        public Layout.Alignment mAlignment;
 
         public Alignment(Layout.Alignment alignment) {
             mAlignment = alignment;

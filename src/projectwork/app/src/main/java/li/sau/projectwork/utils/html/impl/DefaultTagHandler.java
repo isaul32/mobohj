@@ -1,13 +1,10 @@
-package li.sau.projectwork.utils.html;
+package li.sau.projectwork.utils.html.impl;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.DrawableWrapper;
 import android.os.Build;
 import android.text.Editable;
 import android.text.Layout;
@@ -25,7 +22,6 @@ import android.text.style.URLSpan;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import org.xml.sax.Attributes;
@@ -39,8 +35,10 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import li.sau.projectwork.BuildConfig;
 import li.sau.projectwork.R;
+import li.sau.projectwork.utils.html.ImageGetter;
+import li.sau.projectwork.utils.html.TagHandler;
+import li.sau.projectwork.utils.html.impl.utils.TextUtils;
 
 public class DefaultTagHandler implements TagHandler {
     private static final String TAG = DefaultTagHandler.class.getSimpleName();
@@ -59,7 +57,6 @@ public class DefaultTagHandler implements TagHandler {
             "(?:\\s+|\\A)text-decoration\\s*:\\s*(\\S*)\\b");
 
     private Context mContext;
-    private Set<Target> mTargets = new HashSet<>();
     private TextView mTextView;
     private String mBaseUri;
     private Typeface mHeaderTypeface;
@@ -80,6 +77,7 @@ public class DefaultTagHandler implements TagHandler {
 
     @Override
     public void handleStartTag(SpannableStringBuilder spannableStringBuilder,
+                               ImageGetter imageGetter,
                                String tag,
                                Attributes attributes) {
         Log.d(TAG, "handleStartTag called for " + tag);
@@ -112,7 +110,7 @@ public class DefaultTagHandler implements TagHandler {
                 startFont(spannableStringBuilder, "sans-serif", mHeaderTypeface);
                 break;
             case "img":
-                startImg(spannableStringBuilder, attributes);
+                startImg(spannableStringBuilder, attributes, imageGetter);
                 break;
             default:
                 Log.d(TAG, "Skip " + tagLowered
@@ -328,8 +326,12 @@ public class DefaultTagHandler implements TagHandler {
         }
     }
 
-    private void startImg(Editable text, Attributes attributes) {
-        final int viewWidth = mTextView.getWidth();
+    private void startImg(
+            Editable text,
+            Attributes attributes,
+            ImageGetter imageGetter
+    ) {
+        int viewWidth = mTextView.getWidth();
 
         // Calculate image size
         int width;
@@ -384,58 +386,27 @@ public class DefaultTagHandler implements TagHandler {
             selectedSrc = iterator.next().getValue();
         } else {
             // There should be at least default value
+            Log.w(TAG, "Image source is missing");
             return;
         }
 
-        final float ratio = (float) width / (float) height;
-        final int resizedHeight = Math.round((float) viewWidth / ratio);
-
-        // Make wrapper for the image
-        final DrawableWrapper wrapper = new HtmlDrawableWrapper(new ColorDrawable(Color.parseColor("#EAEAEA")));
-
-        // Set bounds to right
-        wrapper.setBounds(0, 0, viewWidth, resizedHeight);
-
-        Target target = new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                BitmapDrawable drawable = new BitmapDrawable(mContext.getResources(),
-                        bitmap);
-
-                // Set drawable and render again
-                wrapper.setDrawable(drawable);
-
-                // Refresh view
-                mTextView.setText(mTextView.getText());
-            }
-
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        };
-        mTargets.add(target);
-
-        // Get picasso instance
-        Picasso picasso = Picasso.get();
-
-        if (BuildConfig.DEBUG) {
-            picasso.setLoggingEnabled(true);
+        if (width <= 0 || height <= 0 || viewWidth == 0) {
+            // Sizes are not ok
+            Log.w(TAG, "Image sizes are wrong");
+            return;
         }
 
-        // Try load the image
-        picasso
-                .load(selectedSrc)
-                .into(target);
+        float ratio = (float) width / (float) height;
+        int resizedHeight = Math.round((float) viewWidth / ratio);
+
+        Drawable drawable = imageGetter.getDrawable(selectedSrc, viewWidth, resizedHeight);
 
         int len = text.length();
         text.append("\uFFFC");
-        text.setSpan(new ImageSpan(wrapper, selectedSrc), len, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        text.setSpan(new ImageSpan(drawable, selectedSrc),
+                len,
+                text.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
     private String getAbsUrl(String url) {

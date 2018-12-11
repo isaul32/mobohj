@@ -2,29 +2,12 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Blue theme -->
-        <!--
-        <item name="colorPrimary">@color/goforePrimary2</item>
-        <item name="colorPrimaryDark">@color/goforePrimary2</item>
-        <item name="colorAccent">@color/goforePrimary2</item>
-        <item name="android:windowBackground">@color/goforeAdditional2</item>
-        -->
-
-        <!-- Blue theme v2 -->
         <item name="colorPrimary">@color/goforePrimary2</item>
         <item name="colorPrimaryDark">@color/goforePrimary2</item>
         <item name="colorAccent">@color/goforePrimary1</item>
         <item name="android:windowBackground">@color/goforeAdditionalLight1</item>
-        <!--<item name="android:windowBackground">@color/goforePrimary2</item>-->
-
-
-        <!-- Orange theme -->
-        <!--
-        <item name="android:windowBackground">@color/goforeAdditionalLight1</item>
-        <item name="colorPrimary">@color/goforePrimary1</item>
-        <item name="colorPrimaryDark">@color/goforePrimaryDark1</item>
-        <item name="colorAccent">@color/goforePrimary1</item>
-        -->
+        <item name="android:textViewStyle">@style/LatoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/LatoButtonStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -35,5 +18,18 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.Drawer">
+        <item name="android:fontFamily">@font/aleo</item>
+        <item name="colorPrimary">@color/goforePrimary1</item>
+    </style>
+
+    <style name="LatoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/lato</item>
+    </style>
+
+    <style name="LatoButtonStyle" parent="Base.Widget.AppCompat.Button">
+        <item name="android:fontFamily">@font/lato_bold</item>
+    </style>
 
 </resources>

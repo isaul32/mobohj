@@ -13,15 +13,25 @@ import org.xml.sax.XMLReader;
 import java.io.IOException;
 import java.io.StringReader;
 
+import li.sau.projectwork.utils.html.ImageGetter;
+import li.sau.projectwork.utils.html.TagHandler;
+
 public class HtmlToSpannedConverter implements ContentHandler {
     private String mSource;
     private XMLReader mReader;
+    private ImageGetter mImageGetter;
     private TagHandler mTagHandler;
     private SpannableStringBuilder mSpannableStringBuilder = new SpannableStringBuilder();
 
-    public HtmlToSpannedConverter(String source, XMLReader mReader, TagHandler tagHandler) {
+    public HtmlToSpannedConverter(
+            String source,
+            XMLReader mReader,
+            ImageGetter imageGetter,
+            TagHandler tagHandler
+    ) {
         this.mSource = source;
         this.mReader = mReader;
+        this.mImageGetter = imageGetter;
         this.mTagHandler = tagHandler;
     }
 
@@ -44,38 +54,8 @@ public class HtmlToSpannedConverter implements ContentHandler {
     }
 
     @Override
-    public void setDocumentLocator(Locator locator) {
-
-    }
-
-    @Override
-    public void startDocument() throws SAXException {
-
-    }
-
-    @Override
-    public void endDocument() throws SAXException {
-
-    }
-
-    @Override
-    public void startPrefixMapping(String prefix, String uri) throws SAXException {
-
-    }
-
-    @Override
-    public void endPrefixMapping(String prefix) throws SAXException {
-
-    }
-
-    @Override
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-        mTagHandler.handleStartTag(mSpannableStringBuilder, localName, atts);
-    }
-
-    @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-        mTagHandler.handleEndTag(mSpannableStringBuilder, localName);
+        mTagHandler.handleStartTag(mSpannableStringBuilder, mImageGetter, localName, atts);
     }
 
     @Override
@@ -95,17 +75,32 @@ public class HtmlToSpannedConverter implements ContentHandler {
     }
 
     @Override
-    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
-
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+        mTagHandler.handleEndTag(mSpannableStringBuilder, localName);
     }
 
     @Override
-    public void processingInstruction(String target, String data) throws SAXException {
-
-    }
+    public void setDocumentLocator(Locator locator) { }
 
     @Override
-    public void skippedEntity(String name) throws SAXException {
-    }
+    public void startDocument() throws SAXException { }
+
+    @Override
+    public void endDocument() throws SAXException { }
+
+    @Override
+    public void startPrefixMapping(String prefix, String uri) throws SAXException { }
+
+    @Override
+    public void endPrefixMapping(String prefix) throws SAXException { }
+
+    @Override
+    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException { }
+
+    @Override
+    public void processingInstruction(String target, String data) throws SAXException { }
+
+    @Override
+    public void skippedEntity(String name) throws SAXException { }
 
 }

@@ -9,11 +9,11 @@ import org.xml.sax.SAXNotSupportedException;
 
 public class Html {
 
-    /*public static Spanned fromHtml(String source) {
-        return fromHtml(source, new DefaultTagHandler());
-    }*/
-
-    public static Spanned fromHtml(String source, TagHandler tagHandler) {
+    public static Spanned fromHtml(
+            String source,
+            ImageGetter imageGetter,
+            TagHandler tagHandler
+    ) {
         Parser parser = new Parser();
         try {
             parser.setProperty(Parser.schemaProperty, new HTMLSchema());
@@ -23,8 +23,10 @@ public class Html {
         }
 
         // Create converter instance
-        HtmlToSpannedConverter converter = new HtmlToSpannedConverter(source, parser, tagHandler);
+        HtmlToSpannedConverter converter = new HtmlToSpannedConverter(source,
+                parser, imageGetter, tagHandler);
 
         return converter.convert();
     }
+
 }

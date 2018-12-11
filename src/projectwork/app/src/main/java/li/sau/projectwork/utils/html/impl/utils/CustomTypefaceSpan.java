@@ -1,4 +1,4 @@
-package li.sau.projectwork.utils.html;
+package li.sau.projectwork.utils.html.impl.utils;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;
