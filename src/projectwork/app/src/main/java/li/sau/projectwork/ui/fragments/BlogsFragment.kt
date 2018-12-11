@@ -1,17 +1,18 @@
 package li.sau.projectwork.ui.fragments
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.Observer
 import androidx.navigation.navOptions
-import kotlinx.android.synthetic.main.fragment_blogs.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import li.sau.projectwork.PostAdapter
+import li.sau.projectwork.PostViewModel
 import li.sau.projectwork.R
+import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogsBinding
 
 class BlogsFragment : Fragment() {
@@ -22,7 +23,23 @@ class BlogsFragment : Fragment() {
     ): View? {
         val binding = FragmentBlogsBinding.inflate(inflater, container, false)
 
-        // TODO: Create adapter for blogs
+        val context = activity?.applicationContext
+
+        context?.let {
+            val database = AppDatabase.getInstance(context)
+            val viewModel = PostViewModel(database.blogPostDao())
+
+            val postAdapter = PostAdapter()
+
+            // Set up recycler view
+            binding.recyclerView.layoutManager = LinearLayoutManager(context,
+                    RecyclerView.VERTICAL, false)
+            binding.recyclerView.adapter = postAdapter
+
+            viewModel.postList.observe(this, Observer { posts ->
+                postAdapter.submitList(posts)
+            })
+        }
 
         return binding.root
     }
@@ -40,8 +57,8 @@ class BlogsFragment : Fragment() {
             }
         }
 
-        navigateButton.setOnClickListener {
+        /*navigateButton.setOnClickListener {
             findNavController().navigate(R.id.blogFragment, null, options)
-        }
+        }*/
     }
 }

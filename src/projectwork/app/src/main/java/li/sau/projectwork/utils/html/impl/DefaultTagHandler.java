@@ -1,8 +1,6 @@
 package li.sau.projectwork.utils.html.impl;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -22,15 +20,11 @@ import android.text.style.URLSpan;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.squareup.picasso.Target;
-
 import org.xml.sax.Attributes;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

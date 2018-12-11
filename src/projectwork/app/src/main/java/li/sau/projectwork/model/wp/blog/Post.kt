@@ -1,5 +1,6 @@
 package li.sau.projectwork.model.wp.blog
 
+import androidx.recyclerview.widget.DiffUtil
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -38,4 +39,20 @@ data class Post(
         val translations: Translations,
         val type: String,
         val wps_subtitle: String
-)
+) {
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Post>() {
+
+            override fun areItemsTheSame(
+                    oldItem: Post,
+                    newItem: Post
+            ) = oldItem.id == newItem.id
+
+            override fun areContentsTheSame(
+                    oldItem: Post,
+                    newItem: Post
+            ) = oldItem.id == newItem.id
+
+        }
+    }
+}

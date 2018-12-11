@@ -66,7 +66,7 @@ class BlogFragment : Fragment() {
 
         context?.let {
 
-            val fadeIn = AnimationUtils.loadAnimation(it,
+            /*val fadeIn = AnimationUtils.loadAnimation(it,
                     android.R.anim.fade_in)
             val fadeOut = AnimationUtils.loadAnimation(it,
                     android.R.anim.fade_out)
@@ -90,7 +90,7 @@ class BlogFragment : Fragment() {
                 val html = Html.fromHtml(buildHtmlTextFromPost(post), imageGetter, htmlToSpanned)
                 mBinding.htmlView.text = html
                 mBinding.model?.loading?.set(false)
-            })
+            })*/
 
         }
     }

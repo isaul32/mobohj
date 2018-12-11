@@ -13,9 +13,6 @@ import org.xml.sax.XMLReader;
 import java.io.IOException;
 import java.io.StringReader;
 
-import li.sau.projectwork.utils.html.ImageGetter;
-import li.sau.projectwork.utils.html.TagHandler;
-
 public class HtmlToSpannedConverter implements ContentHandler {
     private String mSource;
     private XMLReader mReader;

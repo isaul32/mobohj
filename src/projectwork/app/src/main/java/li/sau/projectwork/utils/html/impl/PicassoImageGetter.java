@@ -2,7 +2,6 @@ package li.sau.projectwork.utils.html.impl;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -75,74 +74,6 @@ public class PicassoImageGetter implements ImageGetter {
                 .into(target);
 
         return wrapper;
-
-        /*Log.d(PicassoImageGetter.class.getName(), "Start loading url " + source);
-
-        BitmapDrawablePlaceHolder drawable = new BitmapDrawablePlaceHolder();
-
-        mPicasso
-                .load(source)
-                //.error(R.drawable.connection_error)
-                .into(drawable);
-
-        return drawable;*/
     }
 
-    private class BitmapDrawablePlaceHolder extends BitmapDrawable implements Target {
-
-        protected Drawable drawable;
-
-        @Override
-        public void draw(final Canvas canvas) {
-            if (drawable != null) {
-                checkBounds();
-                drawable.draw(canvas);
-            }
-        }
-
-        public void setDrawable(Drawable drawable) {
-            if (drawable != null) {
-                this.drawable = drawable;
-                checkBounds();
-            }
-        }
-
-        private void checkBounds() {
-            float defaultProportion = (float) drawable.getIntrinsicWidth() / (float) drawable.getIntrinsicHeight();
-            int width = Math.min(mTextView.getWidth(), drawable.getIntrinsicWidth());
-            int height = (int) ((float) width / defaultProportion);
-
-            if (getBounds().right != mTextView.getWidth() || getBounds().bottom != height) {
-
-                setBounds(0, 0, mTextView.getWidth(), height); //set to full width
-
-                int halfOfPlaceHolderWidth = (int) ((float) getBounds().right / 2f);
-                int halfOfImageWidth = (int) ((float) width / 2f);
-
-                drawable.setBounds(
-                        halfOfPlaceHolderWidth - halfOfImageWidth, //centering an image
-                        0,
-                        halfOfPlaceHolderWidth + halfOfImageWidth,
-                        height);
-
-                mTextView.setText(mTextView.getText()); //refresh text
-            }
-        }
-
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            setDrawable(new BitmapDrawable(mContext.getResources(), bitmap));
-        }
-
-        @Override
-        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-            setDrawable(errorDrawable);
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-            setDrawable(placeHolderDrawable);
-        }
-
-    }
 }
