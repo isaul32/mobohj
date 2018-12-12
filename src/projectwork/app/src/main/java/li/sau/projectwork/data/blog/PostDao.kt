@@ -25,12 +25,14 @@ interface PostDao {
     //@Query("select * from post")
     //fun getAll(): LiveData<List<Post>>
 
+    @Transaction
     @Query("select * from post where id = :id")
     fun get(id: Long): LiveData<Post>
 
     @Delete
     fun delete(post: Post)
 
+    @Transaction
     @Query("SELECT * FROM post ORDER BY id ASC")
     fun getAll(): DataSource.Factory<Int, Post>
 

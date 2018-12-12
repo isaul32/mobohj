@@ -1,9 +1,9 @@
 package li.sau.projectwork.model.wp.blog
 
 import androidx.recyclerview.widget.DiffUtil
+import androidx.room.*
 import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 
 @Entity
 data class Post(
@@ -39,7 +39,20 @@ data class Post(
         val translations: Translations,
         val type: String,
         val wps_subtitle: String
+        //@Ignore
+        //var featuredmedia: List<Featuredmedia> = emptyList()
+        //@Embedded(prefix = "embedded_")
+        //@Json(name = "_embedded")
+        //val embedded: li.sau.projectwork.model.wp.blog.Embedded
 ) {
+
+    @Ignore
+    @Json(name = "_embedded")
+    //@field:Json(name = "_embedded")
+    var embedded: li.sau.projectwork.model.wp.blog.Embedded
+            = li.sau.projectwork.model.wp.blog.Embedded()
+    //var featuredmedia: List<Featuredmedia> = emptyList()
+
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Post>() {
 

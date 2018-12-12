@@ -48,8 +48,9 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$navigation_version"
     implementation 'androidx.paging:paging-runtime-ktx:2.1.0-rc01'
     implementation 'com.google.android.material:material:1.1.0-alpha01'
-    implementation 'com.squareup.okio:okio:1.14.0'
-    implementation 'com.squareup.moshi:moshi:1.5.0'
+    implementation 'com.squareup.okio:okio:1.16.0'
+    implementation 'com.squareup.moshi:moshi:1.8.0'
+    implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

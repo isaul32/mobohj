@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 7,
-    "identityHash": "9bcd0abff1a9708d659a23b994f9b125",
+    "identityHash": "d585fdb7630532a217d23bb8c9f4c569",
     "entities": [
       {
         "tableName": "Post",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`author` INTEGER NOT NULL, `comment_status` TEXT NOT NULL, `date` TEXT NOT NULL, `date_gmt` TEXT NOT NULL, `featured_media` INTEGER NOT NULL, `format` TEXT NOT NULL, `id` INTEGER NOT NULL, `lang` TEXT NOT NULL, `link` TEXT NOT NULL, `modified` TEXT NOT NULL, `modified_gmt` TEXT NOT NULL, `ping_status` TEXT NOT NULL, `slug` TEXT NOT NULL, `status` TEXT NOT NULL, `sticky` INTEGER NOT NULL, `template` TEXT NOT NULL, `type` TEXT NOT NULL, `wps_subtitle` TEXT NOT NULL, `content_rendered` TEXT NOT NULL, `excerpt_rendered` TEXT NOT NULL, `guid_rendered` TEXT NOT NULL, `title_rendered` TEXT NOT NULL, `en` INTEGER NOT NULL, `fi` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`author` INTEGER NOT NULL, `comment_status` TEXT NOT NULL, `date` TEXT NOT NULL, `date_gmt` TEXT NOT NULL, `featured_media` INTEGER NOT NULL, `format` TEXT NOT NULL, `id` INTEGER NOT NULL, `lang` TEXT NOT NULL, `link` TEXT NOT NULL, `modified` TEXT NOT NULL, `modified_gmt` TEXT NOT NULL, `ping_status` TEXT NOT NULL, `slug` TEXT NOT NULL, `status` TEXT NOT NULL, `sticky` INTEGER NOT NULL, `template` TEXT NOT NULL, `type` TEXT NOT NULL, `wps_subtitle` TEXT NOT NULL, `content_rendered` TEXT NOT NULL, `excerpt_rendered` TEXT NOT NULL, `guid_rendered` TEXT NOT NULL, `title_rendered` TEXT NOT NULL, `en` INTEGER NOT NULL, `fi` INTEGER NOT NULL, `embedded_featuredmedia` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "author",
@@ -151,6 +151,12 @@
             "columnName": "fi",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "embedded.featuredmedia",
+            "columnName": "embedded_featuredmedia",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -165,7 +171,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"9bcd0abff1a9708d659a23b994f9b125\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d585fdb7630532a217d23bb8c9f4c569\")"
     ]
   }
 }

@@ -25,10 +25,10 @@ public class WordPressAPIServiceImpl {
 
     public interface WordPressAPIService {
 
-        @GET("/wp-json/wp/v2/posts")
+        @GET("/wp-json/wp/v2/posts?_embed")
         Call<List<Post>> getPosts();
 
-        @GET("/wp-json/wp/v2/posts")
+        @GET("/wp-json/wp/v2/posts?_embed")
         Call<List<Post>> getPosts(@Query("page") Long page);
 
         @GET("/wp-json/wp/v2/posts/{postId}")
