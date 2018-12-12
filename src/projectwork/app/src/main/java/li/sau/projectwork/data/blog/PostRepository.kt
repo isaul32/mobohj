@@ -10,8 +10,7 @@ class PostRepository private constructor(private val postDao: PostDao) {
 
         fun getInstance(postDao: PostDao) =
                 instance ?: synchronized(this) {
-                    instance
-                            ?: PostRepository(postDao).also { instance = it }
+                    instance ?: PostRepository(postDao).also { instance = it }
                 }
 
     }

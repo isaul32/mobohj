@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import li.sau.projectwork.PostAdapter
 import li.sau.projectwork.PostViewModel
-import li.sau.projectwork.R
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogsBinding
 import li.sau.projectwork.workers.blog.PostWorker
@@ -30,9 +27,6 @@ class BlogsFragment : Fragment() {
         val context = activity?.applicationContext
 
         context?.let {
-            val database = AppDatabase.getInstance(context)
-            val viewModel = PostViewModel(database.blogPostDao())
-
             val postAdapter = PostAdapter()
 
             // Set up recycler view
@@ -40,6 +34,8 @@ class BlogsFragment : Fragment() {
                     RecyclerView.VERTICAL, false)
             binding.recyclerView.adapter = postAdapter
 
+            val database = AppDatabase.getInstance(context)
+            val viewModel = PostViewModel(database.blogPostDao())
             viewModel.postList.observe(this, Observer { posts ->
                 postAdapter.submitList(posts)
             })

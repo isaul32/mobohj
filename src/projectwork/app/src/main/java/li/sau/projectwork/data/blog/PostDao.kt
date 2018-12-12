@@ -3,6 +3,7 @@ package li.sau.projectwork.data.blog
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
+import li.sau.projectwork.model.wp.blog.Featuredmedia
 import li.sau.projectwork.model.wp.blog.Post
 
 
@@ -18,6 +19,20 @@ interface PostDao {
 
     @Insert
     fun insert(post: Post)
+
+    @Transaction
+    fun insertAllWithMedia(posts: List<Post>) {
+        insertAll(posts)
+        posts.forEach {
+            it.embedded.featuredmedia.forEach { media ->
+                media.embedded_id = it.id
+            }
+            insertAllMedia(it.embedded.featuredmedia)
+        }
+    }
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllMedia(featuredmedias: List<Featuredmedia>)
 
     @Update
     fun update(post: Post)
