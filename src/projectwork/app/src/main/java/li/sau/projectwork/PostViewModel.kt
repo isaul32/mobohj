@@ -12,7 +12,7 @@ class PostViewModel(postDao: PostDao) : ViewModel() {
 
     val postList: LiveData<PagedList<Post>>
 
-    private val pageSize = 20
+    private val pageSize = 5
 
     init {
         val config = PagedList.Config.Builder()
