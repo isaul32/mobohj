@@ -25,10 +25,10 @@ public class WordPressAPIServiceImpl {
 
     public interface WordPressAPIService {
 
-        @GET("/wp-json/wp/v2/posts?_embed")
+        @GET("/wp-json/wp/v2/posts?_embed&per_page=100")
         Call<List<Post>> getPosts();
 
-        @GET("/wp-json/wp/v2/posts?_embed")
+        @GET("/wp-json/wp/v2/posts?_embed&per_page=100")
         Call<List<Post>> getPosts(@Query("page") Long page);
 
         @GET("/wp-json/wp/v2/posts/{postId}")
@@ -36,6 +36,10 @@ public class WordPressAPIServiceImpl {
 
         @GET("/wp-json/wp/v2/users/{userId}")
         Call<User> getUser(@Path("userId") Long userId);
+
+        // Todo use this instead _embed
+        @GET("/wp-json/wp/v2/media/{mediaId}")
+        Call<List<Tag>> getMedia(@Path("mediaId") Long mediaId);
 
         @GET("/wp-json/wp/v2/tags")
         Call<List<Tag>> getTags(@Query("post") Long postId);
