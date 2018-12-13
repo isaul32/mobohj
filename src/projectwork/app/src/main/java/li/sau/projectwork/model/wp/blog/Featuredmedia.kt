@@ -13,5 +13,6 @@ data class Featuredmedia(
         @Embedded(prefix = "details_")
         val media_details: MediaDetails,
         @ForeignKey(entity = Post::class, parentColumns = ["id"], childColumns = ["embedded_id"])
-        var embedded_id: Long?
+        var embedded_id: Long?,
+        val source_url: String
 )

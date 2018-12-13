@@ -37,8 +37,9 @@ import li.sau.projectwork.utils.html.impl.utils.TextUtils;
 public class DefaultTagHandler implements TagHandler {
     private static final String TAG = DefaultTagHandler.class.getSimpleName();
     private static final float[] HEADING_SIZES = {
-            2.0f, 1.5f, 1.17f, 1f, 0.83f, 0.67f
-            // Defaults 1.5f, 1.4f, 1.3f, 1.2f, 1.1f, 1f
+            1.5f, 1.4f, 1.3f, 1.2f, 1.1f, 1f
+            // HTML defaults 2.0f, 1.5f, 1.17f, 1f, 0.83f, 0.67f
+            // Android defaults 1.5f, 1.4f, 1.3f, 1.2f, 1.1f, 1f
     };
 
     private static final Pattern sTextAlignPattern = Pattern.compile(

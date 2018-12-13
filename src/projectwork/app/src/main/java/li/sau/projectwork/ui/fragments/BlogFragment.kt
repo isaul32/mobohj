@@ -9,17 +9,13 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogBinding
 import li.sau.projectwork.utils.BASE_URI
 import li.sau.projectwork.utils.html.impl.DefaultTagHandler
-import li.sau.projectwork.workers.blog.PostWorker
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import android.view.animation.AnimationUtils
 import com.squareup.picasso.Picasso
 import li.sau.projectwork.BuildConfig
 import li.sau.projectwork.R
@@ -27,7 +23,6 @@ import li.sau.projectwork.model.wp.blog.Post
 import li.sau.projectwork.TextViewModel
 import li.sau.projectwork.utils.html.impl.PicassoImageGetter
 import li.sau.projectwork.utils.html.Html
-
 
 class BlogFragment : Fragment() {
 
@@ -47,34 +42,26 @@ class BlogFragment : Fragment() {
         return mBinding.root
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        // Prevent scrolling while doing fragment transition
+        mBinding.scrollView.fling(0)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val work = OneTimeWorkRequest.Builder(PostWorker::class.java).build()
-        WorkManager.getInstance().enqueue(work)
-
-        WorkManager.getInstance().getWorkInfoByIdLiveData(work.id)
-                .observe(viewLifecycleOwner, Observer { status ->
-                    if (status != null && status.state.isFinished) {
-                        renderBlog()
-                    }
-                })
+        renderBlog()
     }
 
     private fun renderBlog() {
-        val context = activity?.applicationContext
+        activity?.applicationContext?.let { context ->
 
-        context?.let {
+            val postId = BlogFragmentArgs.fromBundle(arguments).postId.toLong()
 
-            /*val fadeIn = AnimationUtils.loadAnimation(it,
-                    android.R.anim.fade_in)
-            val fadeOut = AnimationUtils.loadAnimation(it,
-                    android.R.anim.fade_out)
-
-            val database = AppDatabase.getInstance(it)
-
-            database.blogPostDao().getAll().observe(viewLifecycleOwner, Observer { posts ->
-                val post = posts[6]
+            val database = AppDatabase.getInstance(context)
+            database.blogPostDao().get(postId).observe(viewLifecycleOwner, Observer { post ->
                 val htmlToSpanned = DefaultTagHandler(context, mBinding.htmlView,
                         BASE_URI,
                         ResourcesCompat.getFont(context, R.font.lato),
@@ -90,7 +77,7 @@ class BlogFragment : Fragment() {
                 val html = Html.fromHtml(buildHtmlTextFromPost(post), imageGetter, htmlToSpanned)
                 mBinding.htmlView.text = html
                 mBinding.model?.loading?.set(false)
-            })*/
+            })
 
         }
     }

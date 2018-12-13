@@ -10,7 +10,7 @@ import li.sau.projectwork.model.wp.blog.Featuredmedia
 import li.sau.projectwork.model.wp.blog.Post
 import li.sau.projectwork.utils.DATABASE_NAME
 
-@Database(entities = [Post::class, Featuredmedia::class], version = 14)
+@Database(entities = [Post::class, Featuredmedia::class], version = 15)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun blogPostDao(): PostDao
     abstract fun featuredmediaDao(): FeaturedmediaDao

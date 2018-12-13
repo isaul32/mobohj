@@ -17,10 +17,10 @@
         tools:context=".ui.fragments.BlogFragment">
 
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- with app:fadeVisible, width is unknown
             <TextView
                 android:id="@+id/htmlView"
                 android:layout_width="match_parent"
@@ -29,22 +29,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:textColor="@color/goforeBodyText"
-                android:justificationMode="inter_word"
                 android:autoLink="web"
-                app:fadeVisible="@{!model.loading}"
-                tools:targetApi="o" />-->
-
-            <TextView
-                android:id="@+id/htmlView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/goforeBodyText"
-                android:justificationMode="inter_word"
-                android:autoLink="web"
-                tools:targetApi="o" />
+                android:justificationMode="inter_word" />
 
         </ScrollView>
 

@@ -11,13 +11,21 @@
         tools:layout="@layout/fragment_blogs" >
         <action
             android:id="@+id/action_blogsFragment_to_blogFragment"
-            app:destination="@id/blogFragment" />
+            app:destination="@id/blogFragment">
+            <argument
+                android:name="postId"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/blogFragment"
         android:name="li.sau.projectwork.ui.fragments.BlogFragment"
         android:label="@string/blog"
-        tools:layout="@layout/fragment_blog" />
+        tools:layout="@layout/fragment_blog">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="li.sau.projectwork.ui.fragments.AboutFragment"
