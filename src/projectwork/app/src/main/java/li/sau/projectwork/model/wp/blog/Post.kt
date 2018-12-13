@@ -38,7 +38,9 @@ data class Post(
         @Embedded
         val translations: Translations,
         val type: String,
-        val wps_subtitle: String
+        val wps_subtitle: String,
+        var thumbnail_url: String? = null,
+        var author_name: String? = null
 ) {
 
     @Ignore

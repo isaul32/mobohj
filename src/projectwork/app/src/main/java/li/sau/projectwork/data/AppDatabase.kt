@@ -6,14 +6,21 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import li.sau.projectwork.data.blog.FeaturedmediaDao
 import li.sau.projectwork.data.blog.PostDao
+import li.sau.projectwork.data.blog.PostFeaturedmediaJoinDao
 import li.sau.projectwork.model.wp.blog.Featuredmedia
 import li.sau.projectwork.model.wp.blog.Post
+import li.sau.projectwork.model.wp.blog.PostFeaturedmediaJoin
 import li.sau.projectwork.utils.DATABASE_NAME
 
-@Database(entities = [Post::class, Featuredmedia::class], version = 15)
+@Database(entities = [
+    Post::class,
+    Featuredmedia::class,
+    PostFeaturedmediaJoin::class
+], version = 20)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun blogPostDao(): PostDao
     abstract fun featuredmediaDao(): FeaturedmediaDao
+    abstract fun postFeaturedmediaJoinDao(): PostFeaturedmediaJoinDao
 
     companion object {
         @Volatile private var instance: AppDatabase? = null

@@ -21,7 +21,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                android:src="@color/goforePrimary1"
+                android:src="@color/goforeImagePlaceholder"
                 app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

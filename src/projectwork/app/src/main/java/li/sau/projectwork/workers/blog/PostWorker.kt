@@ -20,7 +20,7 @@ class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(cont
                 blogPosts?.let { posts ->
                     val database = AppDatabase.getInstance(applicationContext)
 
-                    database.blogPostDao().insertAllWithMedia(posts)
+                    database.postFeaturedmediaJoinDao().insertAllWithMedia(posts)
 
                     val data = mapOf("posts" to posts.map(Post::id).toLongArray())
 

@@ -6,19 +6,18 @@ import li.sau.projectwork.databinding.ItemPostBinding
 import li.sau.projectwork.model.wp.blog.Post
 import li.sau.projectwork.utils.BASE_URI
 
-class PostViewHolder(val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
+class PostViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindTo(post: Post, onClickListener: OnItemClickListener) {
         binding.title.text = post.title.rendered
-        binding.author.text = post.id.toString()
+        binding.author.text = post.author_name
 
         // Bind onClick listener
-        itemView.setOnClickListener { onClickListener.onItemClick(post) }
+        itemView.setOnClickListener { onClickListener.onItemClick(post.id) }
 
         // Load and set up thumbnail
-        val featuredmedia = post.embedded.featuredmedia
-        if (featuredmedia.isNotEmpty()) {
-            val url = BASE_URI + "/" + featuredmedia.first().source_url
+        post.thumbnail_url?.let {
+            val url = BASE_URI + it
             Picasso.get()
                     .load(url)
                     .into(binding.thumbnail)

@@ -106,11 +106,14 @@ class BlogFragment : Fragment() {
             Log.w(TAG, "Could not parse date: " + post.date)
         }
 
-        // Add excerpt
-        /*
-        val excerpt = post.excerpt.rendered
-        sb.append(excerpt)
-        */
+        // Add author
+        val author = post.author_name
+        author?.let {
+            sb.append("<h6>")
+            sb.append(it.toUpperCase())
+            sb.append("</h6>")
+            sb.append("\n")
+        }
 
         // add content
         val content = post.content.rendered

@@ -49,8 +49,8 @@ class BlogsFragment : Fragment() {
 
         // Set up on click navigation
         val onClickListener = object : OnItemClickListener {
-            override fun onItemClick(post: Post) {
-                val action = BlogsFragmentDirections.actionBlogsFragmentToBlogFragment(post.id.toString())
+            override fun onItemClick(id: Long) {
+                val action = BlogsFragmentDirections.actionBlogsFragmentToBlogFragment(id.toString())
                 findNavController().navigate(action, options)
             }
         }
