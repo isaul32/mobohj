@@ -19,7 +19,6 @@ import li.sau.projectwork.PostViewModel
 import li.sau.projectwork.R
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogsBinding
-import li.sau.projectwork.model.wp.blog.Post
 import li.sau.projectwork.utils.LIST_STATE_KEY
 import li.sau.projectwork.workers.blog.PostWorker
 
@@ -79,9 +78,9 @@ class BlogsFragment : Fragment() {
                 mAdapter.submitList(posts)
 
                 // Scroll to previous position
-                mListState?.let { state ->
+                /*mListState?.let { state ->
                     mLayoutManager.onRestoreInstanceState(state)
-                }
+                }*/
             })
         }
 
@@ -117,4 +116,5 @@ class BlogsFragment : Fragment() {
             mListState = it.getParcelable(LIST_STATE_KEY)
         }
     }
+
 }

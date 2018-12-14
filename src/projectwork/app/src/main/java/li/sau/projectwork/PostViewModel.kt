@@ -12,13 +12,12 @@ class PostViewModel(postDao: PostDao) : ViewModel() {
 
     val postList: LiveData<PagedList<Post>>
 
-    private val pageSize = 5
-
     init {
         val config = PagedList.Config.Builder()
-                .setPageSize(pageSize)
-                .setInitialLoadSizeHint(pageSize * 2)
-                .setEnablePlaceholders(false)
+                .setPageSize(6)
+                .setInitialLoadSizeHint(12)
+                .setPrefetchDistance(12)
+                .setEnablePlaceholders(true)
                 .build()
 
         postList = LivePagedListBuilder(postDao.getAll(), config).build()

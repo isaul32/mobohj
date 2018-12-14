@@ -30,7 +30,7 @@ interface PostFeaturedmediaJoinDao {
             }
 
             if (featuredmedia.isNotEmpty()) {
-                post.thumbnail_url = featuredmedia.first().source_url
+                post.thumbnail_url = featuredmedia.first().media_details.sizes.medium?.source_url
             }
 
             val author = post.embedded.author

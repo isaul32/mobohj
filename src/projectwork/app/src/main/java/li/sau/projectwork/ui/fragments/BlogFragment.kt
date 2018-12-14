@@ -1,6 +1,9 @@
 package li.sau.projectwork.ui.fragments
 
+import android.annotation.SuppressLint
+import android.os.AsyncTask
 import android.os.Bundle
+import android.text.Spanned
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.LayoutInflater
@@ -62,22 +65,27 @@ class BlogFragment : Fragment() {
 
             val database = AppDatabase.getInstance(context)
             database.blogPostDao().get(postId).observe(viewLifecycleOwner, Observer { post ->
-                val htmlToSpanned = DefaultTagHandler(context, mBinding.htmlView,
-                        BASE_URI,
-                        ResourcesCompat.getFont(context, R.font.lato),
-                        ResourcesCompat.getFont(context, R.font.aleo))
+                DoAsync {
+                    val htmlToSpanned = DefaultTagHandler(context, mBinding.htmlView,
+                            BASE_URI,
+                            ResourcesCompat.getFont(context, R.font.lato),
+                            ResourcesCompat.getFont(context, R.font.aleo))
 
-                val picasso = Picasso.get()
-                if (BuildConfig.DEBUG) {
-                    picasso.isLoggingEnabled = true
-                }
+                    val picasso = Picasso.get()
+                    if (BuildConfig.DEBUG) {
+                        picasso.isLoggingEnabled = true
+                    }
 
-                val imageGetter = PicassoImageGetter(context, picasso, mBinding.htmlView)
+                    val imageGetter = PicassoImageGetter(context, picasso, mBinding.htmlView)
 
-                val html = Html.fromHtml(buildHtmlTextFromPost(post), imageGetter, htmlToSpanned)
-                mBinding.htmlView.text = html
-                mBinding.model?.loading?.set(false)
+                    val html = Html.fromHtml(buildHtmlTextFromPost(post), imageGetter, htmlToSpanned)
+
+                    html
+                }.execute()
             })
+
+            //mBinding.htmlView.text = html
+            //mBinding.model?.loading?.set(false)
 
         }
     }
@@ -120,6 +128,19 @@ class BlogFragment : Fragment() {
         sb.append(content)
 
         return sb.toString()
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    inner class DoAsync(val handler: () -> Spanned) : AsyncTask<Void, Void, Spanned>() {
+        override fun doInBackground(vararg params: Void?): Spanned? {
+            Thread.sleep(700)
+            return handler()
+        }
+
+        override fun onPostExecute(result: Spanned?) {
+            mBinding.htmlView.text = result
+            mBinding.model?.loading?.set(false)
+        }
     }
 
 }
