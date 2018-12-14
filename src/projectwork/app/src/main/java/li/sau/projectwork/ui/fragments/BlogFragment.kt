@@ -65,7 +65,7 @@ class BlogFragment : Fragment() {
             val postId = BlogFragmentArgs.fromBundle(arguments).postId.toLong()
 
             val database = AppDatabase.getInstance(context)
-            database.blogPostDao().get(postId).observe(viewLifecycleOwner, Observer { post ->
+            database.postDao().get(postId).observe(viewLifecycleOwner, Observer { post ->
                 DoAsync {
                     val htmlToSpanned = DefaultTagHandler(context, mBinding.htmlView,
                             BASE_URI,
@@ -84,18 +84,21 @@ class BlogFragment : Fragment() {
                     html
                 }.execute()
             })
-
-            //mBinding.htmlView.text = html
-            //mBinding.model?.loading?.set(false)
-
         }
     }
 
     private fun buildHtmlTextFromPost(post: Post): String {
         val sb = StringBuilder()
-        val title = post.title.rendered
+
+        // Add subtitle
+        val subtitle = post.wps_subtitle
+        if (subtitle.isNotBlank()) {
+            sb.append("<h6>$subtitle</h6>")
+            sb.append("\n")
+        }
 
         // Add title
+        val title = post.title.rendered
         sb.append("<h1>$title</h1>")
         sb.append("\n")
 

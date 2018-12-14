@@ -42,12 +42,6 @@ data class Post(
         var thumbnail_url: String? = null,
         var author_name: String? = null
 ) {
-
-    @Ignore
-    @Json(name = "_embedded")
-    var embedded: li.sau.projectwork.model.wp.blog.Embedded
-            = li.sau.projectwork.model.wp.blog.Embedded()
-
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Post>() {
 

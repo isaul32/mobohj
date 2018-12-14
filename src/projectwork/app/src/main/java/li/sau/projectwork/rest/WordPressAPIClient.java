@@ -6,6 +6,8 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
+import static li.sau.projectwork.utils.ConstantsKt.BASE_URI;
+
 public class WordPressAPIClient {
 
     private static Retrofit client;
@@ -15,7 +17,7 @@ public class WordPressAPIClient {
         if (client == null) {
             client = new Retrofit
                     .Builder()
-                    .baseUrl("https://gofore.com/")
+                    .baseUrl(BASE_URI)
                     .addConverterFactory(MoshiConverterFactory.create(moshi))
                     .build();
         }

@@ -12,11 +12,11 @@ data class PostViewModel(
 ) : ViewModel() {
 
     fun getTitle(): Spanned {
-        return Html.fromHtml(title, null, null)
+        return Html.fromHtml(title)
     }
 
     fun getAuthor(): Spanned {
-        return Html.fromHtml(author, null, null)
+        return Html.fromHtml(author)
     }
-    
+
 }

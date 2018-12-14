@@ -10,12 +10,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import li.sau.projectwork.view.EventHandler
 import li.sau.projectwork.view.adapters.BlogAdapter
 import li.sau.projectwork.view.models.BlogViewModel
 import li.sau.projectwork.R
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogsBinding
+import li.sau.projectwork.workers.blog.PostWorker
 
 class BlogsFragment : Fragment() {
 
@@ -68,13 +71,13 @@ class BlogsFragment : Fragment() {
         activity?.applicationContext?.let { context ->
             val database = AppDatabase.getInstance(context)
 
-            mViewModel = BlogViewModel(database.blogPostDao())
+            mViewModel = BlogViewModel(database.postDao())
             mViewModel.postList.observe(this, Observer { posts ->
                 mAdapter.submitList(posts)
             })
         }
 
-        /*val work = OneTimeWorkRequest.Builder(PostWorker::class.java).build()
-        WorkManager.getInstance().enqueue(work)*/
+        val work = OneTimeWorkRequest.Builder(PostWorker::class.java).build()
+        WorkManager.getInstance().enqueue(work)
     }
 }

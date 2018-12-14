@@ -1,4 +1,4 @@
-package li.sau.projectwork.model.wp.blog
+package li.sau.projectwork.model.wp.media
 
 data class ImageFile (
     val file: String,

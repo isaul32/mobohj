@@ -3,6 +3,7 @@ package li.sau.projectwork.rest;
 import java.util.List;
 
 import li.sau.projectwork.model.wp.User;
+import li.sau.projectwork.model.wp.media.Media;
 import li.sau.projectwork.model.wp.blog.Post;
 import retrofit2.Call;
 
@@ -18,6 +19,12 @@ public class WordPressAPICalls {
         return WordPressAPIServiceImpl
                 .getWordPressAPIService()
                 .getPost(id);
+    }
+
+    public static Call<Media> getMedia(Long mediaId) {
+        return WordPressAPIServiceImpl
+                .getWordPressAPIService()
+                .getMedia(mediaId);
     }
 
     public static Call<User> getUser(Long id) {
