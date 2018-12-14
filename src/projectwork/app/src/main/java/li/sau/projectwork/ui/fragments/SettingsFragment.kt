@@ -12,9 +12,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
-        val preference = findPreference("version")
+        val version = findPreference("version")
         preferenceScreen.widgetLayoutResource = R.layout.seppo
-        preference.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+        version.onPreferenceClickListener = Preference.OnPreferenceClickListener {
             // Need 3 click
             if (mShowSeppoCount < 2) {
                 mShowSeppoCount++
@@ -25,6 +25,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
             true
         }
+
+        version.summary = context
+                ?.packageManager
+                ?.getPackageInfo(context?.packageName, 0)
+                ?.versionName
     }
 
 }

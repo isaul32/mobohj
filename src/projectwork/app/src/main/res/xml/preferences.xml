@@ -4,7 +4,7 @@
 
     <PreferenceCategory
         app:key="notifications_category"
-        app:title="Notifications">
+        app:title="@string/notifications">
 
         <SwitchPreferenceCompat
             app:key="notifications"
@@ -14,7 +14,7 @@
 
     <PreferenceCategory
         app:key="syncing_category"
-        app:title="Syncing">
+        app:title="@string/syncing">
 
         <SwitchPreferenceCompat
             app:key="enable_sync"
@@ -24,12 +24,12 @@
 
     <PreferenceCategory
         app:key="about_category"
-        app:title="About">
+        app:title="@string/about">
 
         <Preference
             app:key="version"
-            app:title="Build version"
-            app:summary="1.0.0" />
+            app:title="@string/app_version"
+            app:summary="0.0.0" />
 
     </PreferenceCategory>
 

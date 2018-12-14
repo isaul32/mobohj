@@ -35,20 +35,11 @@ class BlogsFragment : Fragment() {
     ): View? {
         mBinding = FragmentBlogsBinding.inflate(inflater, container, false)
 
-        val options = navOptions {
-            anim {
-                enter = R.anim.slide_in_right
-                exit = R.anim.slide_out_left
-                popEnter = R.anim.slide_in_left
-                popExit = R.anim.slide_out_right
-            }
-        }
-
         // Set up on click navigation
         val onClickListener = object : EventHandler {
             override fun onClick(id: Long) {
                 val action = BlogsFragmentDirections.actionBlogsFragmentToBlogFragment(id.toString())
-                findNavController().navigate(action, options)
+                findNavController().navigate(action)
             }
         }
 
