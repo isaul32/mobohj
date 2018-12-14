@@ -14,10 +14,10 @@ class BlogViewModel(postDao: PostDao) : ViewModel() {
 
     init {
         val config = PagedList.Config.Builder()
-                .setPageSize(2)
-                .setInitialLoadSizeHint(4)
-                .setPrefetchDistance(4)
-                .setEnablePlaceholders(true)
+                .setPageSize(10)
+                .setInitialLoadSizeHint(20)
+                .setPrefetchDistance(5)
+                .setEnablePlaceholders(false)
                 .build()
 
         val livePagedListBuilder = LivePagedListBuilder(postDao.getAll(), config)
