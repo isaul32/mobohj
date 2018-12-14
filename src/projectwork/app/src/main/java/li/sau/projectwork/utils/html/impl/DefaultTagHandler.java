@@ -12,6 +12,7 @@ import android.text.Spanned;
 import android.text.style.AlignmentSpan;
 import android.text.style.BulletSpan;
 import android.text.style.ImageSpan;
+import android.text.style.QuoteSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
@@ -89,6 +90,8 @@ public class DefaultTagHandler implements TagHandler {
                 startFont(spannableStringBuilder, "serif", mBodyTextTypeface);
                 break;
             case "ul":
+            case "ol":
+                // ol -> ul
                 startBlockElement(spannableStringBuilder, attributes, 1);
                 break;
             case "li":
@@ -96,6 +99,9 @@ public class DefaultTagHandler implements TagHandler {
                 break;
             case "a":
                 startA(spannableStringBuilder, attributes);
+                break;
+            case "blockquote":
+                startBlockquote(spannableStringBuilder, attributes);
                 break;
             case "strong":
             case "b":
@@ -169,6 +175,8 @@ public class DefaultTagHandler implements TagHandler {
                 endBlockElement(spannableStringBuilder);
                 break;
             case "ul":
+            case "ol":
+                // ol -> ul
                 endBlockElement(spannableStringBuilder);
                 break;
             case "li":
@@ -176,6 +184,9 @@ public class DefaultTagHandler implements TagHandler {
                 break;
             case "a":
                 endA(spannableStringBuilder);
+                break;
+            case "blockquote":
+                endBlockquote(spannableStringBuilder);
                 break;
             case "strong":
             case "b":
@@ -363,6 +374,16 @@ public class DefaultTagHandler implements TagHandler {
         if (a != null) {
             setSpanFromMark(text, a, new AlignmentSpan.Standard(a.mAlignment));
         }
+    }
+
+    private void startBlockquote(Editable text, Attributes attributes) {
+        startBlockElement(text, attributes, 1);
+        start(text, new TextUtils.Blockquote());
+    }
+
+    private void endBlockquote(Editable text) {
+        endBlockElement(text);
+        end(text, TextUtils.Blockquote.class, new QuoteSpan());
     }
 
     private void startHeading(Editable text, Attributes attributes, int level) {
