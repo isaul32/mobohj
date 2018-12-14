@@ -10,6 +10,12 @@ import org.xml.sax.SAXNotSupportedException;
 public class Html {
 
     public static Spanned fromHtml(
+            String source
+    ) {
+        return fromHtml(source, null, null);
+    }
+
+    public static Spanned fromHtml(
             String source,
             ImageGetter imageGetter,
             TagHandler tagHandler

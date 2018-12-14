@@ -15,8 +15,11 @@ import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
+import android.text.style.SubscriptSpan;
+import android.text.style.SuperscriptSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.URLSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -94,6 +97,36 @@ public class DefaultTagHandler implements TagHandler {
             case "a":
                 startA(spannableStringBuilder, attributes);
                 break;
+            case "strong":
+            case "b":
+                start(spannableStringBuilder, new TextUtils.Bold());
+                break;
+            case "em":
+            case "cite":
+            case "dfn":
+            case "i":
+                start(spannableStringBuilder, new TextUtils.Italic());
+                break;
+            case "big":
+                start(spannableStringBuilder, new TextUtils.Big());
+                break;
+            case "small":
+                start(spannableStringBuilder, new TextUtils.Small());
+                break;
+            case "u":
+                start(spannableStringBuilder, new TextUtils.Underline());
+                break;
+            case "del":
+            case "s":
+            case "strike":
+                start(spannableStringBuilder, new TextUtils.Strikethrough());
+                break;
+            case "sup":
+                start(spannableStringBuilder, new TextUtils.Super());
+                break;
+            case "sub":
+                start(spannableStringBuilder, new TextUtils.Sub());
+                break;
             case "h1":
             case "h2":
             case "h3":
@@ -107,8 +140,15 @@ public class DefaultTagHandler implements TagHandler {
             case "img":
                 startImg(spannableStringBuilder, attributes, imageGetter);
                 break;
+            case "html":
+            case "body":
+            case "br":
+            case "div":
+            case "span":
+                // Skipped
+                break;
             default:
-                Log.d(TAG, "Skip " + tagLowered
+                Log.w(TAG, "Skip " + tagLowered
                         + " start tag, because implementation is missing.");
                 break;
         }
@@ -120,6 +160,9 @@ public class DefaultTagHandler implements TagHandler {
 
         String tagLowered = tag.toLowerCase(Locale.ROOT);
         switch (tag.toLowerCase(Locale.ROOT)) {
+            case "br":
+                spannableStringBuilder.append("\n");
+                break;
             case "p":
                 endFont(spannableStringBuilder);
                 endCssStyle(spannableStringBuilder);
@@ -134,6 +177,36 @@ public class DefaultTagHandler implements TagHandler {
             case "a":
                 endA(spannableStringBuilder);
                 break;
+            case "strong":
+            case "b":
+                end(spannableStringBuilder, TextUtils.Bold.class, new StyleSpan(Typeface.BOLD));
+                break;
+            case "em":
+            case "cite":
+            case "dfn":
+            case "i":
+                end(spannableStringBuilder, TextUtils.Italic.class, new StyleSpan(Typeface.ITALIC));
+                break;
+            case "big":
+                end(spannableStringBuilder, TextUtils.Big.class, new RelativeSizeSpan(1.25f));
+                break;
+            case "small":
+                end(spannableStringBuilder, TextUtils.Small.class, new RelativeSizeSpan(0.8f));
+                break;
+            case "u":
+                end(spannableStringBuilder, TextUtils.Underline.class, new UnderlineSpan());
+                break;
+            case "del":
+            case "s":
+            case "strike":
+                end(spannableStringBuilder, TextUtils.Strikethrough.class, new StrikethroughSpan());
+                break;
+            case "sup":
+                end(spannableStringBuilder, TextUtils.Super.class, new SuperscriptSpan());
+                break;
+            case "sub":
+                end(spannableStringBuilder, TextUtils.Sub.class, new SubscriptSpan());
+                break;
             case "h1":
             case "h2":
             case "h3":
@@ -145,8 +218,14 @@ public class DefaultTagHandler implements TagHandler {
                 break;
             case "img":
                 break;
+            case "html":
+            case "body":
+            case "div":
+            case "span":
+                // Skipped
+                break;
             default:
-                Log.d(TAG, "Skip " + tagLowered
+                Log.w(TAG, "Skip " + tagLowered
                         + " end tag, because implementation is missing.");
                 break;
         }
