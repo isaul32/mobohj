@@ -29,7 +29,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:textColor="@color/goforeBodyText"
-                android:autoLink="web"
                 android:justificationMode="inter_word" />
 
         </ScrollView>

@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.text.Spanned
 import android.text.format.DateFormat
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -140,6 +141,7 @@ class BlogFragment : Fragment() {
         override fun onPostExecute(result: Spanned?) {
             mBinding.htmlView.text = result
             mBinding.model?.loading?.set(false)
+            mBinding.htmlView.movementMethod = LinkMovementMethod()
         }
     }
 
