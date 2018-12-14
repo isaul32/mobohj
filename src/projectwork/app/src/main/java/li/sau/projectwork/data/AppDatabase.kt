@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import li.sau.projectwork.data.blog.FeaturedmediaDao
-import li.sau.projectwork.data.blog.PostDao
-import li.sau.projectwork.data.blog.PostFeaturedmediaJoinDao
+import li.sau.projectwork.data.dao.FeaturedmediaDao
+import li.sau.projectwork.data.dao.PostDao
+import li.sau.projectwork.data.dao.PostFeaturedmediaJoinDao
 import li.sau.projectwork.model.wp.blog.Featuredmedia
 import li.sau.projectwork.model.wp.blog.Post
 import li.sau.projectwork.model.wp.blog.PostFeaturedmediaJoin

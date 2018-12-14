@@ -23,7 +23,7 @@ import com.squareup.picasso.Picasso
 import li.sau.projectwork.BuildConfig
 import li.sau.projectwork.R
 import li.sau.projectwork.model.wp.blog.Post
-import li.sau.projectwork.TextViewModel
+import li.sau.projectwork.view.models.TextViewModel
 import li.sau.projectwork.utils.html.impl.PicassoImageGetter
 import li.sau.projectwork.utils.html.Html
 

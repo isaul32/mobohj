@@ -1,10 +1,10 @@
-package li.sau.projectwork
+package li.sau.projectwork.view.models
 
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import androidx.lifecycle.LiveData
-import li.sau.projectwork.data.blog.PostDao
+import li.sau.projectwork.data.dao.PostDao
 import li.sau.projectwork.model.wp.blog.Post
 
 

@@ -1,4 +1,4 @@
-package li.sau.projectwork.data.blog
+package li.sau.projectwork.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource

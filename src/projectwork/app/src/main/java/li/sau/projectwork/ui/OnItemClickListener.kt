@@ -1,4 +1,4 @@
-package li.sau.projectwork
+package li.sau.projectwork.ui
 
 interface OnItemClickListener {
     fun onItemClick(id: Long)

@@ -1,4 +1,4 @@
-package li.sau.projectwork.data.wp;
+package li.sau.projectwork.rest;
 
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory;

@@ -1,7 +1,6 @@
 package li.sau.projectwork.ui.fragments
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
-import li.sau.projectwork.OnItemClickListener
-import li.sau.projectwork.PostAdapter
-import li.sau.projectwork.PostViewModel
+import li.sau.projectwork.ui.OnItemClickListener
+import li.sau.projectwork.adapters.PostAdapter
+import li.sau.projectwork.view.models.PostViewModel
 import li.sau.projectwork.R
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogsBinding
-import li.sau.projectwork.workers.blog.PostWorker
 
 class BlogsFragment : Fragment() {
 
@@ -78,7 +74,7 @@ class BlogsFragment : Fragment() {
             })
         }
 
-        val work = OneTimeWorkRequest.Builder(PostWorker::class.java).build()
-        WorkManager.getInstance().enqueue(work)
+        /*val work = OneTimeWorkRequest.Builder(PostWorker::class.java).build()
+        WorkManager.getInstance().enqueue(work)*/
     }
 }

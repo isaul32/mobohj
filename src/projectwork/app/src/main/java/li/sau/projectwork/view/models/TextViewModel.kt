@@ -1,4 +1,4 @@
-package li.sau.projectwork
+package li.sau.projectwork.view.models
 
 import android.text.Spanned
 import androidx.databinding.ObservableBoolean

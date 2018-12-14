@@ -1,9 +1,10 @@
-package li.sau.projectwork
+package li.sau.projectwork.view.holders
 
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import li.sau.projectwork.databinding.ItemPostBinding
 import li.sau.projectwork.model.wp.blog.Post
+import li.sau.projectwork.ui.OnItemClickListener
 import li.sau.projectwork.utils.BASE_URI
 
 class PostViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {

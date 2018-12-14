@@ -7,7 +7,7 @@
     <data>
         <variable
             name="model"
-            type="li.sau.projectwork.TextViewModel" />
+            type="li.sau.projectwork.view.models.TextViewModel" />
     </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout

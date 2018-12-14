@@ -1,4 +1,4 @@
-package li.sau.projectwork.data.blog
+package li.sau.projectwork.data.dao
 
 import androidx.room.*
 import li.sau.projectwork.model.wp.blog.Featuredmedia

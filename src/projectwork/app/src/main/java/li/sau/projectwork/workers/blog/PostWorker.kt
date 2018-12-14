@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.work.*
 import li.sau.projectwork.data.AppDatabase
-import li.sau.projectwork.data.wp.WordPressAPICalls
+import li.sau.projectwork.rest.WordPressAPICalls
 import li.sau.projectwork.model.wp.blog.Post
 import java.io.IOException
 
