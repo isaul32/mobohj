@@ -15,4 +15,8 @@ data class PostViewModel(
         return Html.fromHtml(title, null, null)
     }
 
+    fun getAuthor(): Spanned {
+        return Html.fromHtml(author, null, null)
+    }
+    
 }
