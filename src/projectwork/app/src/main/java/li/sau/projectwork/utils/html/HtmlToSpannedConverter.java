@@ -52,7 +52,9 @@ public class HtmlToSpannedConverter implements ContentHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-        mTagHandler.handleStartTag(mSpannableStringBuilder, mImageGetter, localName, atts);
+        if (mTagHandler != null) {
+            mTagHandler.handleStartTag(mSpannableStringBuilder, mImageGetter, localName, atts);
+        }
     }
 
     @Override
@@ -73,7 +75,9 @@ public class HtmlToSpannedConverter implements ContentHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        mTagHandler.handleEndTag(mSpannableStringBuilder, localName);
+        if (mTagHandler != null) {
+            mTagHandler.handleEndTag(mSpannableStringBuilder, localName);
+        }
     }
 
     @Override

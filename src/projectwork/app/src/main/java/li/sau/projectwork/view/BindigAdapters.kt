@@ -1,9 +1,14 @@
-package li.sau.projectwork.utils
+package li.sau.projectwork.view
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.graphics.drawable.ColorDrawable
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.Picasso
+import li.sau.projectwork.R
+import li.sau.projectwork.utils.BASE_URI
 
 @BindingAdapter("fadeVisible")
 fun setFadeVisible(view: View, visible: Boolean) {
@@ -29,5 +34,16 @@ fun setFadeVisible(view: View, visible: Boolean) {
                 }
             })
         }
+    }
+}
+
+@BindingAdapter("imageUrl")
+fun loadImage(view: ImageView, url: String?) {
+    url?.let {
+        Picasso.get()
+                .load(BASE_URI + it)
+                .into(view)
+    } ?: run {
+        view.setImageResource(R.color.goforeImagePlaceholder)
     }
 }

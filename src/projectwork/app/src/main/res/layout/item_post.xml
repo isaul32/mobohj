@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="li.sau.projectwork.view.models.PostViewModel" />
+        <variable
+            name="handler"
+            type="li.sau.projectwork.view.EventHandler" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardBackgroundColor="@color/goforeCardBgColor"
-        app:cardCornerRadius="0dp">
+        app:cardCornerRadius="0dp"
+        android:onClick="@{() -> handler.onClick(viewModel.id)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,16 +31,18 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 android:src="@color/goforeImagePlaceholder"
+                app:imageUrl="@{viewModel.imageUrl}"
                 app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="contentDescription" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title placeholder"
+                android:text="@{viewModel.title}"
                 android:textColor="@color/goforeTitleText"
                 android:fontFamily="@font/lato_bold"
                 android:textSize="20sp"
@@ -45,7 +57,7 @@
                 android:id="@+id/author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Author placeholder"
+                android:text="@{viewModel.author}"
                 android:textAllCaps="true"
                 android:textColor="@color/goforeTitleText"
                 android:padding="16dp"

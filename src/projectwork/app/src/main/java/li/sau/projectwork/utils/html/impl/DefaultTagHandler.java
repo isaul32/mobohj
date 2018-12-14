@@ -394,14 +394,16 @@ public class DefaultTagHandler implements TagHandler {
         float ratio = (float) width / (float) height;
         int resizedHeight = Math.round((float) viewWidth / ratio);
 
-        Drawable drawable = imageGetter.getDrawable(selectedSrc, viewWidth, resizedHeight);
+        if (imageGetter != null) {
+            Drawable drawable = imageGetter.getDrawable(selectedSrc, viewWidth, resizedHeight);
 
-        int len = text.length();
-        text.append("\uFFFC");
-        text.setSpan(new ImageSpan(drawable, selectedSrc),
-                len,
-                text.length(),
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            int len = text.length();
+            text.append("\uFFFC");
+            text.setSpan(new ImageSpan(drawable, selectedSrc),
+                    len,
+                    text.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
     }
 
     private String getAbsUrl(String url) {
