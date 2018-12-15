@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import li.sau.projectwork.view.EventHandler
+import li.sau.projectwork.ui.EventHandler
 import li.sau.projectwork.view.holders.BlogViewHolder
 import li.sau.projectwork.databinding.ItemPostBinding
 import li.sau.projectwork.model.wp.blog.Post

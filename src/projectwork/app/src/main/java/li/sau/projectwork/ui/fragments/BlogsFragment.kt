@@ -7,15 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import li.sau.projectwork.view.EventHandler
+import li.sau.projectwork.ui.EventHandler
 import li.sau.projectwork.view.adapters.BlogAdapter
 import li.sau.projectwork.view.models.BlogViewModel
-import li.sau.projectwork.R
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogsBinding
 import li.sau.projectwork.workers.blog.PostWorker

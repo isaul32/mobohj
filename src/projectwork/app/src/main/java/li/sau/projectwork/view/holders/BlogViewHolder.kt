@@ -3,7 +3,7 @@ package li.sau.projectwork.view.holders
 import androidx.recyclerview.widget.RecyclerView
 import li.sau.projectwork.databinding.ItemPostBinding
 import li.sau.projectwork.model.wp.blog.Post
-import li.sau.projectwork.view.EventHandler
+import li.sau.projectwork.ui.EventHandler
 import li.sau.projectwork.view.models.PostViewModel
 
 class BlogViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {

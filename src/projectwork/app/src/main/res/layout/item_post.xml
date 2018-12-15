@@ -9,7 +9,7 @@
             type="li.sau.projectwork.view.models.PostViewModel" />
         <variable
             name="handler"
-            type="li.sau.projectwork.view.EventHandler" />
+            type="li.sau.projectwork.ui.EventHandler" />
     </data>
 
     <androidx.cardview.widget.CardView

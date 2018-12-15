@@ -8,35 +8,27 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableWrapper;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import li.sau.projectwork.utils.html.ImageGetter;
 import li.sau.projectwork.utils.html.impl.utils.HtmlDrawableWrapper;
 
-public class PicassoImageGetter implements ImageGetter {
+public class SynchronousPicassoImageGetter implements ImageGetter {
 
-    private static final String TAG = PicassoImageGetter.class.getSimpleName();
+    private static final String TAG = SynchronousPicassoImageGetter.class.getSimpleName();
 
     private Context mContext;
-    private TextView mTextView;
     private Picasso mPicasso;
-    //private Set<Target> mTargets = new HashSet<>(); // Prevent garbage collector to clean targets
 
-    public PicassoImageGetter(
+    public SynchronousPicassoImageGetter(
             Context context,
-            Picasso picasso,
-            TextView textView
+            Picasso picasso
     ) {
         this.mContext = context;
         this.mPicasso = picasso;
-        this.mTextView = textView;
     }
 
     @Override
@@ -47,40 +39,11 @@ public class PicassoImageGetter implements ImageGetter {
         // Set bounds to right
         wrapper.setBounds(0, 0, width, height);
 
-        /*Target target = new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                BitmapDrawable drawable = new BitmapDrawable(mContext.getResources(),
-                        bitmap);
-
-                // Set drawable and render again
-                wrapper.setDrawable(drawable);
-
-                // Refresh view
-                mTextView.setText(mTextView.getText());
-            }
-
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        };
-        mTargets.add(target);
-
-        // Try load the image
-        mPicasso
-                .load(source)
-                .into(target);*/
-
         try {
             Bitmap bitmap = mPicasso
                     .load(source)
                     .get();
+            
             BitmapDrawable drawable = new BitmapDrawable(mContext.getResources(), bitmap);
             wrapper.setDrawable(drawable);
         } catch (IOException e) {

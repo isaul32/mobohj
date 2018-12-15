@@ -25,7 +25,7 @@ import li.sau.projectwork.BuildConfig
 import li.sau.projectwork.R
 import li.sau.projectwork.model.wp.blog.Post
 import li.sau.projectwork.view.models.TextViewModel
-import li.sau.projectwork.utils.html.impl.PicassoImageGetter
+import li.sau.projectwork.utils.html.impl.SynchronousPicassoImageGetter
 import li.sau.projectwork.utils.html.Html
 
 class BlogFragment : Fragment() {
@@ -77,7 +77,7 @@ class BlogFragment : Fragment() {
                         picasso.isLoggingEnabled = true
                     }
 
-                    val imageGetter = PicassoImageGetter(context, picasso, mBinding.htmlView)
+                    val imageGetter = SynchronousPicassoImageGetter(context, picasso)
 
                     val html = Html.fromHtml(buildHtmlTextFromPost(post), imageGetter, htmlToSpanned)
 
