@@ -138,7 +138,11 @@ class BlogFragment : Fragment() {
     inner class DoAsync(val handler: () -> Spanned) : AsyncTask<Void, Void, Spanned>() {
         override fun doInBackground(vararg params: Void?): Spanned? {
             Thread.sleep(700)
-            return handler()
+            return if (!isCancelled) {
+                handler()
+            } else {
+                null
+            }
         }
 
         override fun onPostExecute(result: Spanned?) {

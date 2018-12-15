@@ -43,7 +43,7 @@ public class SynchronousPicassoImageGetter implements ImageGetter {
             Bitmap bitmap = mPicasso
                     .load(source)
                     .get();
-            
+
             BitmapDrawable drawable = new BitmapDrawable(mContext.getResources(), bitmap);
             wrapper.setDrawable(drawable);
         } catch (IOException e) {

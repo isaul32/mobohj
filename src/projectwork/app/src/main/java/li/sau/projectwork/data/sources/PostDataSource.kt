@@ -3,22 +3,19 @@ package li.sau.projectwork.data.sources
 import androidx.paging.ItemKeyedDataSource
 import li.sau.projectwork.model.wp.blog.Post
 
-class PostDataSource() : ItemKeyedDataSource<Int, Post>() {
+class PostDataSource() : ItemKeyedDataSource<Long, Post>() {
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Post>) {
+    override fun loadBefore(params: LoadParams<Long>, callback: LoadCallback<Post>) {
+    }
+
+    override fun loadAfter(params: LoadParams<Long>, callback: LoadCallback<Post>) {
 
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Post>) {
+    override fun loadInitial(params: LoadInitialParams<Long>, callback: LoadInitialCallback<Post>) {
 
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Post>) {
-
-    }
-
-    override fun getKey(item: Post): Int {
-        return 0
-    }
+    override fun getKey(item: Post): Long = item.id
 
 }

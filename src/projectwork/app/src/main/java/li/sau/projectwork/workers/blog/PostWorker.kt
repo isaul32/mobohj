@@ -3,7 +3,6 @@ package li.sau.projectwork.workers.blog
 import android.content.Context
 import android.util.Log
 import androidx.work.Data
-import androidx.work.Result
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import li.sau.projectwork.data.AppDatabase
