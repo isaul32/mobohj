@@ -61,30 +61,31 @@ class PostFragment : Fragment() {
     }
 
     private fun renderPost() {
-        activity?.applicationContext?.let { context ->
+        activity?.let { activity ->
+            arguments?.let { args  ->
+                val postId = PostFragmentArgs.fromBundle(args).postId.toLong()
 
-            val postId = PostFragmentArgs.fromBundle(arguments).postId.toLong()
+                val database = AppDatabase.getInstance(activity.applicationContext)
+                database.postDao().get(postId).observe(viewLifecycleOwner, Observer { post ->
+                    DoAsync {
+                        val htmlToSpanned = DefaultTagHandler(activity, mBinding.htmlView,
+                                BASE_URI,
+                                ResourcesCompat.getFont(activity, R.font.lato),
+                                ResourcesCompat.getFont(activity, R.font.aleo))
 
-            val database = AppDatabase.getInstance(context)
-            database.postDao().get(postId).observe(viewLifecycleOwner, Observer { post ->
-                DoAsync {
-                    val htmlToSpanned = DefaultTagHandler(context, mBinding.htmlView,
-                            BASE_URI,
-                            ResourcesCompat.getFont(context, R.font.lato),
-                            ResourcesCompat.getFont(context, R.font.aleo))
+                        val picasso = Picasso.get()
+                        if (BuildConfig.DEBUG) {
+                            picasso.isLoggingEnabled = true
+                        }
 
-                    val picasso = Picasso.get()
-                    if (BuildConfig.DEBUG) {
-                        picasso.isLoggingEnabled = true
-                    }
+                        val imageGetter = SynchronousPicassoImageGetter(activity, picasso)
 
-                    val imageGetter = SynchronousPicassoImageGetter(context, picasso)
+                        val html = Html.fromHtml(buildHtmlTextFromPost(post), imageGetter, htmlToSpanned)
 
-                    val html = Html.fromHtml(buildHtmlTextFromPost(post), imageGetter, htmlToSpanned)
-
-                    html
-                }.execute()
-            })
+                        html
+                    }.execute()
+                })
+            }
         }
     }
 
@@ -138,6 +139,7 @@ class PostFragment : Fragment() {
     @SuppressLint("StaticFieldLeak")
     inner class DoAsync(val handler: () -> Spanned) : AsyncTask<Void, Void, Spanned>() {
         override fun doInBackground(vararg params: Void?): Spanned? {
+            // Todo: delay only UI
             Thread.sleep(700)
             return if (!isCancelled) {
                 handler()
