@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         // Set up navigation controller
         mNavController = Navigation.findNavController(this, R.id.my_nav_host_fragment)
-        val topLevelDestinations = setOf(R.id.blogsFragment,
+        val topLevelDestinations = setOf(R.id.blogFragment,
                 R.id.settingsFragment,
                 R.id.aboutFragment)
         mAppBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations)

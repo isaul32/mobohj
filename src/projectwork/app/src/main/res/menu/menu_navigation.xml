@@ -5,7 +5,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/blogsFragment"
+            android:id="@+id/blogFragment"
             android:icon="@drawable/ic_menu_whatshot"
             android:title="@string/blog" />
         <!--<item

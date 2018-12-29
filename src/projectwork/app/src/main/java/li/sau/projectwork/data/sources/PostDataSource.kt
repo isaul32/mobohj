@@ -1,21 +1,18 @@
 package li.sau.projectwork.data.sources
 
-import androidx.paging.ItemKeyedDataSource
+import androidx.paging.PageKeyedDataSource
 import li.sau.projectwork.model.wp.blog.Post
 
-class PostDataSource() : ItemKeyedDataSource<Long, Post>() {
-
-    override fun loadBefore(params: LoadParams<Long>, callback: LoadCallback<Post>) {
+class PostDataSource : PageKeyedDataSource<Long, Post>() {
+    override fun loadInitial(params: LoadInitialParams<Long>, callback: LoadInitialCallback<Long, Post>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun loadAfter(params: LoadParams<Long>, callback: LoadCallback<Post>) {
-
+    override fun loadAfter(params: LoadParams<Long>, callback: LoadCallback<Long, Post>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun loadInitial(params: LoadInitialParams<Long>, callback: LoadInitialCallback<Post>) {
-
+    override fun loadBefore(params: LoadParams<Long>, callback: LoadCallback<Long, Post>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    override fun getKey(item: Post): Long = item.id
-
 }

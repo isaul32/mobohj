@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
-    app:startDestination="@id/blogsFragment">
+    app:startDestination="@id/blogFragment">
     <fragment
-        android:id="@+id/blogsFragment"
-        android:name="li.sau.projectwork.ui.fragments.BlogsFragment"
+        android:id="@+id/blogFragment"
+        android:name="li.sau.projectwork.ui.fragments.BlogFragment"
         android:label="@string/blog"
-        tools:layout="@layout/fragment_blogs" >
+        tools:layout="@layout/fragment_blog" >
         <action
-            android:id="@+id/action_blogsFragment_to_blogFragment"
-            app:destination="@id/blogFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right">
+            android:id="@+id/action_blogFragment_to_postFragment"
+            app:destination="@id/postFragment" app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left" app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right">
             <argument
                 android:name="postId"
                 app:argType="string" />
         </action>
     </fragment>
     <fragment
-        android:id="@+id/blogFragment"
-        android:name="li.sau.projectwork.ui.fragments.BlogFragment"
+        android:id="@+id/postFragment"
+        android:name="li.sau.projectwork.ui.fragments.PostFragment"
         android:label="@string/post"
-        tools:layout="@layout/fragment_blog">
+        tools:layout="@layout/fragment_post">
         <argument
             android:name="postId"
             app:argType="string" />
