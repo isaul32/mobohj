@@ -383,7 +383,17 @@ public class DefaultTagHandler implements TagHandler {
 
     private void endBlockquote(Editable text) {
         endBlockElement(text);
-        end(text, TextUtils.Blockquote.class, new QuoteSpan());
+        int bulletColor = mContext.getColor(R.color.goforePrimary1);
+        // Require API level 28
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            float density = mContext.getResources().getDisplayMetrics().density;
+            int gapWidth = Math.round((float) 80 / density);
+            int stripeWidth = Math.round((float) 30 / density);
+            end(text, TextUtils.Blockquote.class,
+                    new QuoteSpan(bulletColor, stripeWidth, gapWidth));
+        } else {
+            end(text, TextUtils.Blockquote.class, new QuoteSpan(bulletColor));
+        }
     }
 
     private void startHeading(Editable text, Attributes attributes, int level) {
