@@ -11,11 +11,12 @@ import li.sau.projectwork.rest.WordPressAPICalls
 import java.io.IOException
 
 class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
+
     private val TAG by lazy { PostWorker::class.java.simpleName }
 
     override fun doWork(): Result {
         try {
-            val res = WordPressAPICalls.getPosts().execute()
+            val res = WordPressAPICalls.getPosts(10).execute()
             if (res.isSuccessful) {
                 val blogPosts = res.body()
 

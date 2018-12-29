@@ -15,7 +15,7 @@ public class WordPressAPIServiceImpl {
 
     private static WordPressAPIService wordPressAPIService;
 
-    static synchronized WordPressAPIService getWordPressAPIService() {
+    public static synchronized WordPressAPIService getWordPressAPIService() {
         if (wordPressAPIService == null) {
             wordPressAPIService = WordPressAPIClient
                     .getApiClient()
@@ -26,11 +26,14 @@ public class WordPressAPIServiceImpl {
 
     public interface WordPressAPIService {
 
-        @GET("/wp-json/wp/v2/posts?lang=en&per_page=100")
-        Call<List<Post>> getPosts();
+        @GET("/wp-json/wp/v2/posts?lang=en&orderby=date&order=desc")
+        Call<List<Post>> getPosts(@Query("per_page") Integer perPage);
 
-        @GET("/wp-json/wp/v2/posts?per_page=100")
-        Call<List<Post>> getPosts(@Query("page") Long page);
+        @GET("/wp-json/wp/v2/posts?lang=en&orderby=date&order=desc")
+        Call<List<Post>> getPostsBefore(
+                @Query("per_page") Integer perPage,
+                @Query("before") String before
+        );
 
         @GET("/wp-json/wp/v2/posts/{postId}")
         Call<Post> getPost(@Path("postId") Long postId);

@@ -29,7 +29,7 @@ interface PostDao {
     fun delete(post: Post)
 
     @Transaction
-    @Query("SELECT * FROM post WHERE en = id ORDER BY id DESC")
+    @Query("SELECT * FROM post WHERE en = id ORDER BY date DESC")
     fun getAll(): DataSource.Factory<Int, Post>
 
 }

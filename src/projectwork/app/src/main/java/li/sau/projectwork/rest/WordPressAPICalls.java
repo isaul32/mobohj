@@ -9,10 +9,10 @@ import retrofit2.Call;
 
 public class WordPressAPICalls {
 
-    public static Call<List<Post>> getPosts() {
+    public static Call<List<Post>> getPosts(Integer perPage) {
         return WordPressAPIServiceImpl
                 .getWordPressAPIService()
-                .getPosts();
+                .getPosts(perPage);
     }
 
     public static Call<Post> getPost(Long id) {

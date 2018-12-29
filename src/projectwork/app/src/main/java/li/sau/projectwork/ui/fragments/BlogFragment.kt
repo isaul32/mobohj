@@ -9,14 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
 import li.sau.projectwork.ui.EventHandler
 import li.sau.projectwork.view.adapters.BlogAdapter
 import li.sau.projectwork.view.models.BlogViewModel
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogBinding
-import li.sau.projectwork.workers.blog.PostWorker
 
 class BlogFragment : Fragment() {
 
@@ -65,8 +62,5 @@ class BlogFragment : Fragment() {
                 mAdapter.submitList(posts)
             })
         }
-
-        val work = OneTimeWorkRequest.Builder(PostWorker::class.java).build()
-        WorkManager.getInstance().enqueue(work)
     }
 }
