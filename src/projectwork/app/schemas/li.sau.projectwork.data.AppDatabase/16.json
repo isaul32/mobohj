@@ -1,0 +1,347 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 16,
+    "identityHash": "2aac798f820f33bb5a7ee7f8d9c940f6",
+    "entities": [
+      {
+        "tableName": "Post",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`author` INTEGER NOT NULL, `comment_status` TEXT NOT NULL, `date` TEXT NOT NULL, `date_gmt` TEXT NOT NULL, `featured_media` INTEGER NOT NULL, `format` TEXT NOT NULL, `id` INTEGER NOT NULL, `lang` TEXT NOT NULL, `link` TEXT NOT NULL, `modified` TEXT NOT NULL, `modified_gmt` TEXT NOT NULL, `ping_status` TEXT NOT NULL, `slug` TEXT NOT NULL, `status` TEXT NOT NULL, `sticky` INTEGER NOT NULL, `template` TEXT NOT NULL, `type` TEXT NOT NULL, `wps_subtitle` TEXT NOT NULL, `content_rendered` TEXT NOT NULL, `excerpt_rendered` TEXT NOT NULL, `guid_rendered` TEXT NOT NULL, `title_rendered` TEXT NOT NULL, `en` INTEGER, `fi` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "author",
+            "columnName": "author",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "comment_status",
+            "columnName": "comment_status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date_gmt",
+            "columnName": "date_gmt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "featured_media",
+            "columnName": "featured_media",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "format",
+            "columnName": "format",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lang",
+            "columnName": "lang",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "link",
+            "columnName": "link",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modified",
+            "columnName": "modified",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modified_gmt",
+            "columnName": "modified_gmt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ping_status",
+            "columnName": "ping_status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slug",
+            "columnName": "slug",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sticky",
+            "columnName": "sticky",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "template",
+            "columnName": "template",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wps_subtitle",
+            "columnName": "wps_subtitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "content.rendered",
+            "columnName": "content_rendered",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "excerpt.rendered",
+            "columnName": "excerpt_rendered",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "guid.rendered",
+            "columnName": "guid_rendered",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title.rendered",
+            "columnName": "title_rendered",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "translations.en",
+            "columnName": "en",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "translations.fi",
+            "columnName": "fi",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Featuredmedia",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `date` TEXT NOT NULL, `post_id` INTEGER, `source_url` TEXT NOT NULL, `details_file` TEXT NOT NULL, `details_width` INTEGER NOT NULL, `details_height` INTEGER NOT NULL, `details_full_file` TEXT, `details_full_height` INTEGER, `details_full_width` INTEGER, `details_full_mime_type` TEXT, `details_full_source_url` TEXT, `details_large_file` TEXT, `details_large_height` INTEGER, `details_large_width` INTEGER, `details_large_mime_type` TEXT, `details_large_source_url` TEXT, `details_medium_file` TEXT, `details_medium_height` INTEGER, `details_medium_width` INTEGER, `details_medium_mime_type` TEXT, `details_medium_source_url` TEXT, `details_thumbnail_file` TEXT, `details_thumbnail_height` INTEGER, `details_thumbnail_width` INTEGER, `details_thumbnail_mime_type` TEXT, `details_thumbnail_source_url` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "post_id",
+            "columnName": "post_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "source_url",
+            "columnName": "source_url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "media_details.file",
+            "columnName": "details_file",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "media_details.width",
+            "columnName": "details_width",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "media_details.height",
+            "columnName": "details_height",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "media_details.sizes.full.file",
+            "columnName": "details_full_file",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.full.height",
+            "columnName": "details_full_height",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.full.width",
+            "columnName": "details_full_width",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.full.mime_type",
+            "columnName": "details_full_mime_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.full.source_url",
+            "columnName": "details_full_source_url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.large.file",
+            "columnName": "details_large_file",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.large.height",
+            "columnName": "details_large_height",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.large.width",
+            "columnName": "details_large_width",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.large.mime_type",
+            "columnName": "details_large_mime_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.large.source_url",
+            "columnName": "details_large_source_url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.medium.file",
+            "columnName": "details_medium_file",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.medium.height",
+            "columnName": "details_medium_height",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.medium.width",
+            "columnName": "details_medium_width",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.medium.mime_type",
+            "columnName": "details_medium_mime_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.medium.source_url",
+            "columnName": "details_medium_source_url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.thumbnail.file",
+            "columnName": "details_thumbnail_file",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.thumbnail.height",
+            "columnName": "details_thumbnail_height",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.thumbnail.width",
+            "columnName": "details_thumbnail_width",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.thumbnail.mime_type",
+            "columnName": "details_thumbnail_mime_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_details.sizes.thumbnail.source_url",
+            "columnName": "details_thumbnail_source_url",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2aac798f820f33bb5a7ee7f8d9c940f6\")"
+    ]
+  }
+}
