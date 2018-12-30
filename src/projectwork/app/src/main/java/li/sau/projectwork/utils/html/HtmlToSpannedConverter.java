@@ -36,12 +36,14 @@ public class HtmlToSpannedConverter implements ContentHandler {
         // This converter implements ContentHandler interface
         mReader.setContentHandler(this);
 
-        try {
-            mReader.parse(new InputSource(new StringReader(mSource)));
-        } catch (IOException | SAXException e) {
-            // We are reading from a string. There isn't IO problems.
-            // Never happen! Read the source...
-            throw new RuntimeException(e);
+        if (mSource != null) {
+            try {
+                mReader.parse(new InputSource(new StringReader(mSource)));
+            } catch (IOException | SAXException e) {
+                // We are reading from a string. There isn't IO problems.
+                // Never happen! Read the source...
+                throw new RuntimeException(e);
+            }
         }
 
         // https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/text/Html.java#757
