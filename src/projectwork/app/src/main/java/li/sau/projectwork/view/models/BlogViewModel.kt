@@ -44,6 +44,10 @@ class BlogViewModel(private val postDao: PostDao) : ViewModel() {
         boundaryCallback.helper.retryAllFailed()
     }
 
+    fun refresh() {
+        // Todo: implement refresh
+    }
+
     private fun insertResultIntoDb(body: List<Post>?) {
         body?.let { posts ->
 

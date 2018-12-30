@@ -9,11 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_blog.*
 import li.sau.projectwork.ui.EventHandler
 import li.sau.projectwork.view.adapters.BlogAdapter
 import li.sau.projectwork.view.models.BlogViewModel
 import li.sau.projectwork.data.AppDatabase
 import li.sau.projectwork.databinding.FragmentBlogBinding
+import li.sau.projectwork.utils.NetworkState
 
 class BlogFragment : Fragment() {
 
@@ -49,7 +51,6 @@ class BlogFragment : Fragment() {
         mBinding.recyclerView.layoutManager = mLayoutManager
         mBinding.recyclerView.adapter = mAdapter
 
-
         return mBinding.root
     }
 
@@ -65,7 +66,12 @@ class BlogFragment : Fragment() {
             })
             mViewModel.networkState.observe(this, Observer {
                 mAdapter.setNetworkState(it)
+                swipe_refresh.isRefreshing = it == NetworkState.LOADING
             })
+
+            swipe_refresh.setOnRefreshListener {
+                mViewModel.refresh()
+            }
         }
     }
 }
