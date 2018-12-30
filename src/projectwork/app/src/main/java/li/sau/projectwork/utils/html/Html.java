@@ -17,6 +17,13 @@ public class Html {
 
     public static Spanned fromHtml(
             String source,
+            TagHandler tagHandler
+    ) {
+        return fromHtml(source, null, tagHandler);
+    }
+
+    public static Spanned fromHtml(
+            String source,
             ImageGetter imageGetter,
             TagHandler tagHandler
     ) {

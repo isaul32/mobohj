@@ -70,9 +70,9 @@ class PostFragment : Fragment() {
                 database.postDao().get(postId).observe(viewLifecycleOwner, Observer { post ->
                     DoAsync {
                         val htmlToSpanned = DefaultTagHandler(activity, mBinding.htmlView,
-                                BASE_URI,
-                                ResourcesCompat.getFont(activity, R.font.lato),
-                                ResourcesCompat.getFont(activity, R.font.aleo))
+                            BASE_URI,
+                            ResourcesCompat.getFont(activity, R.font.lato),
+                            ResourcesCompat.getFont(activity, R.font.aleo))
 
                         val picasso = Picasso.get()
                         if (BuildConfig.DEBUG) {

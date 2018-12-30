@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreferenceCompat
 import li.sau.projectwork.R
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -30,6 +31,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 ?.packageManager
                 ?.getPackageInfo(context?.packageName, 0)
                 ?.versionName
+
+        // Sync is always on. This means that post are saved in db.
+        val sync = findPreference("enable_sync") as SwitchPreferenceCompat
+        sync.isChecked = true
+        sync.isEnabled = false
+
     }
 
 }

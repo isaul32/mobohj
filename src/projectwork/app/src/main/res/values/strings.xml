@@ -18,4 +18,5 @@
     <string name="syncing">Syncing</string>
     <string name="notifications">Notifications</string>
     <string name="retry">Retry</string>
+    <string name="about_text"><![CDATA[<p>All content and graphics belong to Gofore.</p>\n<p>This application is <b>unofficial</b> mobile client for reading Gofore\'s blog. The application is made by <i>Sauli Anto</i> and it\'s done as a mobile development course exercise at Tampere University of Technology in 2018.</p>\n<p>© 2018 Gofore</p>]]></string>
 </resources>
