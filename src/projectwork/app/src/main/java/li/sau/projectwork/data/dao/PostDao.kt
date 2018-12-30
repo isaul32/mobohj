@@ -28,6 +28,9 @@ interface PostDao {
     @Delete
     fun delete(post: Post)
 
+    @Query("DELETE FROM post")
+    fun deleteAll()
+
     @Transaction
     @Query("SELECT * FROM post WHERE en = id ORDER BY date DESC")
     fun getAll(): DataSource.Factory<Int, Post>

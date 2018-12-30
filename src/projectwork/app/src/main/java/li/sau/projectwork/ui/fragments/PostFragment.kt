@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.MainThread
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -148,6 +149,7 @@ class PostFragment : Fragment() {
             }
         }
 
+        @MainThread
         override fun onPostExecute(result: Spanned?) {
             mBinding.htmlView.text = result
             mBinding.model?.loading?.set(false)

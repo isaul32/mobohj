@@ -60,15 +60,19 @@ class BlogFragment : Fragment() {
         activity?.applicationContext?.let { context ->
             val database = AppDatabase.getInstance(context)
 
-            mViewModel = BlogViewModel(database.postDao())
+            // Observe network state and posts
+            mViewModel = BlogViewModel(database)
             mViewModel.postList.observe(this, Observer { posts ->
                 mAdapter.submitList(posts)
             })
             mViewModel.networkState.observe(this, Observer {
                 mAdapter.setNetworkState(it)
-                swipe_refresh.isRefreshing = it == NetworkState.LOADING
             })
 
+            // Observe manual refresh
+            mViewModel.refreshState.observe(this, Observer {
+                swipe_refresh.isRefreshing = it == NetworkState.LOADING
+            })
             swipe_refresh.setOnRefreshListener {
                 mViewModel.refresh()
             }
