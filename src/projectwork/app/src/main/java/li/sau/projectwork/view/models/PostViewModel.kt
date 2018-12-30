@@ -8,7 +8,7 @@ data class PostViewModel(
         val id: Long,
         val title: String = "Title placeholder",
         val author: String? = "Author placeholder",
-        val imageUrl: String? = "https://cdn-images-1.medium.com/max/1000/1*vdsHPzUebwn3Y_M6hvcEOg.jpeg"
+        val imageUrl: String? = "https://gofore.com/wp-content/themes/gofore/elements/img/goforecrew_pattern-05.jpg"
 ) : ViewModel() {
 
     fun getTitle(): Spanned {

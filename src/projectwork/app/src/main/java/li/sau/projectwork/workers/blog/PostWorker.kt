@@ -10,6 +10,7 @@ import li.sau.projectwork.model.wp.blog.Post
 import li.sau.projectwork.rest.WordPressAPICalls
 import java.io.IOException
 
+// Not used anymore
 class PostWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
 
     private val TAG by lazy { PostWorker::class.java.simpleName }

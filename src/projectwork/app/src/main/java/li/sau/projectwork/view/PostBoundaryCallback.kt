@@ -1,4 +1,4 @@
-package li.sau.projectwork.data
+package li.sau.projectwork.view
 
 import androidx.annotation.MainThread
 import androidx.paging.PagedList

@@ -38,8 +38,10 @@ class BlogFragment : Fragment() {
             }
         }
 
-        // Create adatper and layout manager
-        mAdapter = BlogAdapter(onClickListener)
+        // Create adapter
+        mAdapter = BlogAdapter(onClickListener) {
+            mViewModel.retry()
+        }
         mLayoutManager = LinearLayoutManager(context,
                 RecyclerView.VERTICAL, false)
 
@@ -60,6 +62,9 @@ class BlogFragment : Fragment() {
             mViewModel = BlogViewModel(database.postDao())
             mViewModel.postList.observe(this, Observer { posts ->
                 mAdapter.submitList(posts)
+            })
+            mViewModel.networkState.observe(this, Observer {
+                mAdapter.setNetworkState(it)
             })
         }
     }
