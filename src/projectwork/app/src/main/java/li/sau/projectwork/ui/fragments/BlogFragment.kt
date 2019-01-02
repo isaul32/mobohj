@@ -25,6 +25,9 @@ class BlogFragment : Fragment() {
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var mViewModel: BlogViewModel
 
+    private var mPosition:  Int = 0
+    private var mOffset: Int = 0
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -64,6 +67,8 @@ class BlogFragment : Fragment() {
             mViewModel = BlogViewModel(database)
             mViewModel.postList.observe(this, Observer { posts ->
                 mAdapter.submitList(posts)
+
+                mLayoutManager.scrollToPositionWithOffset(mPosition, mOffset)
             })
             mViewModel.networkState.observe(this, Observer {
                 mAdapter.setNetworkState(it)
@@ -78,4 +83,13 @@ class BlogFragment : Fragment() {
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+
+        mPosition = mLayoutManager.findFirstVisibleItemPosition()
+        val view = mBinding.recyclerView.getChildAt(0)
+        mOffset = if (view == null) 0 else view.top - mBinding.recyclerView.paddingTop
+    }
+
 }
