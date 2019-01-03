@@ -27,6 +27,7 @@ class BlogFragment : Fragment() {
 
     private var mPosition:  Int = 0
     private var mOffset: Int = 0
+    private var mDoScroll: Boolean = false
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -68,7 +69,10 @@ class BlogFragment : Fragment() {
             mViewModel.postList.observe(this, Observer { posts ->
                 mAdapter.submitList(posts)
 
-                mLayoutManager.scrollToPositionWithOffset(mPosition, mOffset)
+                if (mDoScroll) {
+                    mLayoutManager.scrollToPositionWithOffset(mPosition, mOffset)
+                    mDoScroll = false
+                }
             })
             mViewModel.networkState.observe(this, Observer {
                 mAdapter.setNetworkState(it)
@@ -90,6 +94,7 @@ class BlogFragment : Fragment() {
         mPosition = mLayoutManager.findFirstVisibleItemPosition()
         val view = mBinding.recyclerView.getChildAt(0)
         mOffset = if (view == null) 0 else view.top - mBinding.recyclerView.paddingTop
+        mDoScroll = true
     }
 
 }
