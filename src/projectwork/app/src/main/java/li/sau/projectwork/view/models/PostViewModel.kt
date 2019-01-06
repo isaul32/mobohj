@@ -6,9 +6,9 @@ import li.sau.projectwork.utils.html.Html
 
 data class PostViewModel(
         val id: Long,
-        val title: String = "Title placeholder",
-        val author: String? = "Author placeholder",
-        val imageUrl: String? = "https://gofore.com/wp-content/themes/gofore/elements/img/goforecrew_pattern-05.jpg"
+        val title: String,
+        val author: String?,
+        val imageUrl: String?
 ) : ViewModel() {
 
     fun getTitle(): Spanned {

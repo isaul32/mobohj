@@ -31,7 +31,7 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 android:src="@color/goforeImagePlaceholder"
-                app:imageUrl="@{viewModel.imageUrl}"
+                app:imageUrl="@{viewModel}"
                 app:layout_constraintDimensionRatio="H,16:9"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

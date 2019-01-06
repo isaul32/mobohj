@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso
 import li.sau.projectwork.BuildConfig
 import li.sau.projectwork.R
 import li.sau.projectwork.utils.BASE_URI
+import li.sau.projectwork.view.models.PostViewModel
 
 @BindingAdapter("fadeVisible")
 fun setFadeVisible(view: View, visible: Boolean) {
@@ -37,18 +38,30 @@ fun setFadeVisible(view: View, visible: Boolean) {
     }
 }
 
-@BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url: String?) {
-    url?.let {
-        val picasso = Picasso.get()
-        if (BuildConfig.DEBUG) {
-            picasso.isLoggingEnabled = true
-        }
+val goforecrewPatterns = arrayOf(
+        //"https://gofore.com/wp-content/themes/gofore/elements/img/goforecrew_pattern-01.jpg",
+        //"https://gofore.com/wp-content/themes/gofore/elements/img/goforecrew_pattern-02.jpg",
+        "https://gofore.com/wp-content/themes/gofore/elements/img/goforecrew_pattern-03.jpg"
+        //"https://gofore.com/wp-content/themes/gofore/elements/img/goforecrew_pattern-04.jpg",
+        //"https://gofore.com/wp-content/themes/gofore/elements/img/goforecrew_pattern-05.jpg"
+)
 
+@BindingAdapter("imageUrl")
+fun loadImage(view: ImageView, model: PostViewModel) {
+    val picasso = Picasso.get()
+    if (BuildConfig.DEBUG) {
+        picasso.isLoggingEnabled = true
+    }
+
+    model.imageUrl?.let {
         picasso
                 .load(BASE_URI + it)
                 .into(view)
     } ?: run {
+
         view.setImageResource(R.color.goforeImagePlaceholder)
+        picasso
+                .load(goforecrewPatterns[(model.id % goforecrewPatterns.size).toInt()])
+                .into(view)
     }
 }
